@@ -1,5 +1,6 @@
 // @ts-nocheck
 "use client";
+import { useState, useEffect } from "react";
 import Marquee from "react-marquee-slider";
 import one from "../../../public/companies/sensrtech.svg";
 import two from "../../../public/companies/Evenly.svg";
@@ -22,10 +23,26 @@ import styled from "@emotion/styled";
 import { DashedContainer, StyledImage } from "@/app/styledComps/containers";
 import { SectionTitle2 } from "@/app/styledComps/texts";
 
-// Imports ---
-
 const CompaniesMarquee = () => {
-  const isMobile = window.innerWidth <= 768;
+  const [isMobile, setIsMobile] = useState(false);
+
+  // UseEffect to ensure the `window` object is accessed only on the client
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Set initial value for `isMobile`
+    handleResize();
+
+    // Listen for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <DashedContainer
@@ -44,143 +61,36 @@ const CompaniesMarquee = () => {
           <div className="gradient-left"></div>
 
           <Marquee velocity={isMobile ? 8 : 25} direction={"rtl"}>
-            <div className="logo-holder">
-              <StyledImage
-                src={one}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={two}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={three}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={four}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={five}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={six}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={seven}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={eight}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={nine}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={ten}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={eleven}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>{" "}
-            <div className="logo-holder">
-              <StyledImage
-                src={twelve}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={thirteen}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={fourteen}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={fifteen}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={sixteen}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
-            <div className="logo-holder">
-              <StyledImage
-                src={seventeen}
-                width="100"
-                height="100"
-                alt={`icon-one`}
-              />
-            </div>
+            {[
+              one,
+              two,
+              three,
+              four,
+              five,
+              six,
+              seven,
+              eight,
+              nine,
+              ten,
+              eleven,
+              twelve,
+              thirteen,
+              fourteen,
+              fifteen,
+              sixteen,
+              seventeen,
+            ].map((imageSrc, index) => (
+              <div className="logo-holder" key={index}>
+                <StyledImage
+                  src={imageSrc}
+                  width="100"
+                  height="100"
+                  alt={`icon-${index + 1}`}
+                />
+              </div>
+            ))}
           </Marquee>
+
           <div className="gradient-right"></div>
         </div>
       </CompaniesWrapper>
