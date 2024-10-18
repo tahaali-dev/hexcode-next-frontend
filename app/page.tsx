@@ -8,6 +8,7 @@ import SliderOfLove from "./(frontendPages)/home/components/SliderOfLove";
 import VideoPlayer from "./(frontendPages)/home/components/VideoPlayer";
 import WhatWeDo from "./(frontendPages)/home/components/WhatWeDo";
 import Footer from "./CommonComps/Footer";
+import VerticalSlider from "./CommonComps/TextChanging";
 import EmptyContainer from "./styledComps/containers";
 // Imports ------
 

@@ -100,6 +100,7 @@ export const SectionSubHeading = styled.p`
 
 export const HighlightText = styled.span`
   color: var(--clr-primary-l1);
+  min-width: ;
 `;
 
 export const LightText = styled.p`

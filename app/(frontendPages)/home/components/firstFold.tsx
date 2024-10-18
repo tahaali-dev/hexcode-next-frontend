@@ -3,13 +3,25 @@ import { PrimaryBtn, TertiaryBtn } from "@/app/styledComps/buttons";
 import { DashedContainer } from "@/app/styledComps/containers";
 import {
   HighlightText,
-  SectionName,
   SectionTitle,
   SectionTitle2,
 } from "@/app/styledComps/texts";
 import styled from "@emotion/styled";
+import useHighlightText from "../hooks/useHighlightText";
+// Imports ------------------------------------------------
+
+// Array of strings to cycle through
+const highlightTexts = [
+  "Digital Products",
+  "Creative Designs",
+  "Design Solutions",
+  "Brilliant Works",
+];
 
 const Firstfold = () => {
+  // Text Animation hook --------------------------------
+  const { highlightRef, currentText } = useHighlightText(highlightTexts);
+
   return (
     <DashedContainer
       leftTop={false}
@@ -20,16 +32,18 @@ const Firstfold = () => {
     >
       <FirstFoldWrapper>
         <SectionTitle2 className="mb-lg">
-          It's Hexcode, Your product design partner!
+          It's Hexcode, Your product design partner!
         </SectionTitle2>
+
         <SectionTitle fontSize="64px" lineHeight="74px">
-          World-Class <HighlightText>Digital Products</HighlightText>
+          World-Class{" "}
+          <HighlightText ref={highlightRef}>{currentText}</HighlightText>
           <br /> On‑Time. On‑Budget. On‑Point.
         </SectionTitle>
 
         <div className="d-flex align-center justify-center mt-xxl 2 g-lg btns-box">
           <PrimaryBtn padding="16px" fontSize="18px" className="w-full">
-            Lets's Talk
+            Let's Talk
           </PrimaryBtn>
 
           <TertiaryBtn padding="16px" fontSize="18px" className="w-full">
@@ -43,7 +57,7 @@ const Firstfold = () => {
 
 export default Firstfold;
 
-//Styles ---
+// Styles ---
 const FirstFoldWrapper = styled.div`
   padding: 80px 8px;
 
