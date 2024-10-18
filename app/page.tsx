@@ -28,7 +28,7 @@ const Homepage = () => {
       <Benefits />
       <EmptyContainer height="76px" />
       <FAQ />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
