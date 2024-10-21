@@ -16,24 +16,24 @@ const VideoPlayer: React.FC = () => {
     x: 0,
     y: 0,
   });
-  const [isPlaying, setIsPlaying] = useState<boolean>(false); // Track if the video is playing
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
     const video = videoRef.current;
 
-    // Create a ScrollTrigger for scaling the video
     const scrollTrigger = ScrollTrigger.create({
       trigger: containerRef.current,
-      start: "top 300", // Start the animation when the top of the container is 300px from the top of the viewport
-      end: "bottom 650", // When the bottom of the container hits the center of the viewport
+      start: "top 20%",
+      end: "bottom 60%",
+
       onEnter: () =>
-        gsap.to(video, { scale: 1.34, duration: 0.5, ease: "power2.out" }),
+        gsap.to(video, { scale: 1.34, duration: 0.7, ease: "power2.out" }),
       onLeave: () =>
-        gsap.to(video, { scale: 1, duration: 0.5, ease: "power2.out" }),
+        gsap.to(video, { scale: 1, duration: 0.7, ease: "power2.out" }),
       onEnterBack: () =>
-        gsap.to(video, { scale: 1.5, duration: 0.5, ease: "power2.out" }),
+        gsap.to(video, { scale: 1.5, duration: 0.7, ease: "power2.out" }),
       onLeaveBack: () =>
-        gsap.to(video, { scale: 1, duration: 0.5, ease: "power2.out" }),
+        gsap.to(video, { scale: 1, duration: 0.7, ease: "power2.out" }),
       // markers: true, // Enable markers for debugging
     });
 
