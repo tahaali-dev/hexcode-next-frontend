@@ -72,6 +72,7 @@ export const Container = styled.section<{
   background-color: var(--background-color);
   display: flex;
   justify-content: center;
+  background-color: var(--clr-light);
 
   .hex-left-top {
     position: absolute;

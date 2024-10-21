@@ -15,56 +15,64 @@ import { PrimaryBtn, SecondaryBtn } from "../styledComps/buttons";
 
 const Header = () => {
   return (
-    <DashedContainer
-      leftTop={false}
-      leftBottom={true}
-      rightTop={false}
-      rightBottom={true}
-      borderTopNone="none"
-    >
-      <HeaderWrapper>
-        <div className="p-md d-flex align-center justify-between ">
-          <div className="d-flex g-xl">
-            <Image src={Logo} height={20} alt="hexcode-logo" />
-            <div className="d-flex g-xl m-none">
-              <NavLink icon={ProjectIcon} title={"Projects"} />
-              <NavLink icon={AboutIcon} title={"About"} />
-              <NavLink icon={ServicesIcon} title={"Services"} />
-              <NavLink icon={ContactIcon} title={"Contact us"} />
+    <HeaderSticky>
+      <DashedContainer
+        leftTop={false}
+        leftBottom={true}
+        rightTop={false}
+        rightBottom={true}
+        borderTopNone="none"
+      >
+        <HeaderWrapper>
+          <div className="p-md d-flex align-center justify-between ">
+            <div className="d-flex g-xl">
+              <Image src={Logo} height={20} alt="hexcode-logo" />
+              <div className="d-flex g-xl m-none">
+                <NavLink icon={ProjectIcon} title={"Projects"} />
+                <NavLink icon={AboutIcon} title={"About"} />
+                <NavLink icon={ServicesIcon} title={"Services"} />
+                <NavLink icon={ContactIcon} title={"Contact us"} />
+              </div>
             </div>
-          </div>
 
-          <div className="hamburger-holder d-none">
-            <StyledImage
-              src={HamburgerIcon}
-              alt="figma-icon"
-              width="20"
-              height="20"
-            />
-          </div>
-
-          <div className="d-flex g-md m-none">
-            <SecondaryBtn>
+            <div className="hamburger-holder d-none">
               <StyledImage
-                src={FigmaIcon}
+                src={HamburgerIcon}
                 alt="figma-icon"
                 width="20"
                 height="20"
               />
-            </SecondaryBtn>
-            <PrimaryBtn padding="8px 16px" fontSize="16px">
-              Lets's Talk
-            </PrimaryBtn>
+            </div>
+
+            <div className="d-flex g-md m-none">
+              <SecondaryBtn>
+                <StyledImage
+                  src={FigmaIcon}
+                  alt="figma-icon"
+                  width="20"
+                  height="20"
+                />
+              </SecondaryBtn>
+              <PrimaryBtn padding="8px 16px" fontSize="16px">
+                Lets's Talk
+              </PrimaryBtn>
+            </div>
           </div>
-        </div>
-      </HeaderWrapper>
-    </DashedContainer>
+        </HeaderWrapper>
+      </DashedContainer>
+    </HeaderSticky>
   );
 };
 
 export default Header;
 
 // styles --
+
+const HeaderSticky = styled.section`
+  position: sticky;
+  top: 0;
+  z-index: 5;
+`;
 
 const HeaderWrapper = styled.header`
   position: sticky;

@@ -7,7 +7,6 @@ import VIIcon from "../../../public/homepage/visualIdentity.svg";
 import WPIcon from "../../../public/homepage/websiteandproduct.svg";
 import CDIcon from "../../../public/homepage/creativedev.svg";
 import ConIcon from "../../../public/homepage/consulting.svg";
-
 import { useEffect, useRef } from "react";
 import { DashedContainer, StyledImage } from "@/app/styledComps/containers";
 import {
@@ -16,7 +15,13 @@ import {
   SectionTitle,
 } from "@/app/styledComps/texts";
 import { ConsultingCard, WhatWeDoCard } from "@/app/styledComps/cards";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+// Register the ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
+// imports  ------------------------------------------------------------------------------------------------
 const para1Vis = `Visual identity is the unique visual\nlanguage of your brand, creating\nmemorable impressions and\nemotional connections with your\naudience.`;
 const para2Vis = `Logotype, Typography & Colour\nIllustrations & 3D\nPhotography Art Direction\nBrand Book & Guidelines\nAnimations\nVideo Production\nProduct Design`;
 
@@ -29,7 +34,6 @@ const para2Dev = `Logotype, Typography & Colour\nIllustrations & 3D\nPhotography
 const Consulting = `Our website design services blend innovation\nand creativity to deliver user-centric solutions\nthat elevate your brand and engage your\naudience.`;
 
 const WhatWeDo = () => {
-  const cardRefs: any = useRef([]); // To reference the card elements
   const cardsData = [
     {
       title: "Visual Identity",
@@ -65,6 +69,36 @@ const WhatWeDo = () => {
     },
   ];
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Ensure GSAP runs on the client-side only
+
+      const cards = gsap.utils.toArray(".whatwedo-card") as HTMLElement[]; // Cast to HTMLElement array
+      const spacer = 118;
+
+      if (cards.length > 0) {
+        cards.forEach((card, index) => {
+          ScrollTrigger.create({
+            trigger: card,
+            start: `top-=${index * spacer} top+=15%`,
+            endTrigger: ".pin-panel",
+            // end: `bottom ${cards.length * spacer}`,
+            pin: true,
+            pinSpacing: false,
+            markers: true,
+            id: `card-pin-${index}`,
+            scrub: true,
+          });
+        });
+      }
+
+      // Cleanup on unmount
+      return () => {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
+    }
+  }, []);
+
   return (
     <DashedContainer
       leftTop={false}
@@ -92,9 +126,9 @@ const WhatWeDo = () => {
         />
 
         <div className="cards-holder">
-          {cardsData.map((card, index) => (
-            <div key={index} ref={(el: any) => (cardRefs.current[index] = el)}>
-              {index === cardsData.length - 1 ? (
+          {cardsData.map((card, index) =>
+            card.title === "Consulting" ? (
+              <div className="whatwedo-card " key={index}>
                 <ConsultingCard
                   title={card.title}
                   bgcolor={card.bgcolor}
@@ -102,7 +136,9 @@ const WhatWeDo = () => {
                   image={card.image}
                   icon={card.icon}
                 />
-              ) : (
+              </div>
+            ) : (
+              <div className="whatwedo-card" key={index}>
                 <WhatWeDoCard
                   title={card.title}
                   bgcolor={card.bgcolor}
@@ -111,9 +147,9 @@ const WhatWeDo = () => {
                   image={card.image}
                   icon={card.icon}
                 />
-              )}
-            </div>
-          ))}
+              </div>
+            )
+          )}
         </div>
       </WhatwedoWrapper>
     </DashedContainer>
