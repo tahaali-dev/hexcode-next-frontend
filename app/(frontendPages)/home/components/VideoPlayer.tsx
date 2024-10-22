@@ -11,11 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
 const VideoPlayer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const cursorRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
-  });
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
@@ -25,15 +22,34 @@ const VideoPlayer: React.FC = () => {
       trigger: containerRef.current,
       start: "top 20%",
       end: "bottom 60%",
-
       onEnter: () =>
-        gsap.to(video, { scale: 1.34, duration: 0.7, ease: "power2.out" }),
+        gsap.to(video, {
+          scale: 1.34,
+          zIndex: 5,
+          duration: 0.7,
+          ease: "power2.out",
+        }),
       onLeave: () =>
-        gsap.to(video, { scale: 1, duration: 0.7, ease: "power2.out" }),
+        gsap.to(video, {
+          scale: 1,
+          zIndex: 3,
+          duration: 0.7,
+          ease: "power2.out",
+        }),
       onEnterBack: () =>
-        gsap.to(video, { scale: 1.5, duration: 0.7, ease: "power2.out" }),
+        gsap.to(video, {
+          scale: 1.5,
+          zIndex: 5,
+          duration: 0.7,
+          ease: "power2.out",
+        }),
       onLeaveBack: () =>
-        gsap.to(video, { scale: 1, duration: 0.7, ease: "power2.out" }),
+        gsap.to(video, {
+          scale: 1,
+          zIndex: 3,
+          duration: 0.7,
+          ease: "power2.out",
+        }),
       // markers: true, // Enable markers for debugging
     });
 
@@ -65,9 +81,17 @@ const VideoPlayer: React.FC = () => {
     };
   }, []);
 
-  // Update mouse position on mouse move
+  // Update mouse position on mouse move with GSAP animation
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
+    const cursor = cursorRef.current;
+    if (cursor) {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.1, // Speed of the cursor movement
+        ease: "power2.out",
+      });
+    }
   };
 
   // Toggle video play/pause
@@ -110,7 +134,7 @@ const VideoPlayer: React.FC = () => {
           playsInline
         />
         {isHovered && (
-          <CustomCursor style={{ left: mousePosition.x, top: mousePosition.y }}>
+          <CustomCursor ref={cursorRef}>
             {isPlaying ? (
               <IconPause>⏸️</IconPause> // Pause icon
             ) : (
@@ -137,6 +161,12 @@ const VideoPlayerWrapper = styled.div`
   /* Custom cursor styles */
   &.hovered {
     cursor: none; /* Hide default cursor */
+  }
+
+  @media (max-width: 768px) {
+    video {
+      z-index: 3;
+    }
   }
 `;
 

@@ -72,7 +72,6 @@ const WhatWeDo = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Ensure GSAP runs on the client-side only
-
       const cards = gsap.utils.toArray(".whatwedo-card") as HTMLElement[]; // Cast to HTMLElement array
       const spacer = 118;
 
@@ -81,11 +80,11 @@ const WhatWeDo = () => {
           ScrollTrigger.create({
             trigger: card,
             start: `top-=${index * spacer} top+=15%`,
-            endTrigger: ".pin-panel",
-            // end: `bottom ${cards.length * spacer}`,
+            endTrigger: ".cards-holder",
+            end: `bottom top+=${500 + cards.length * spacer}`,
             pin: true,
             pinSpacing: false,
-            markers: true,
+            // markers: true,
             id: `card-pin-${index}`,
             scrub: true,
           });
@@ -128,7 +127,7 @@ const WhatWeDo = () => {
         <div className="cards-holder">
           {cardsData.map((card, index) =>
             card.title === "Consulting" ? (
-              <div className="whatwedo-card " key={index}>
+              <div className="whatwedo-card">
                 <ConsultingCard
                   title={card.title}
                   bgcolor={card.bgcolor}
@@ -138,7 +137,7 @@ const WhatWeDo = () => {
                 />
               </div>
             ) : (
-              <div className="whatwedo-card" key={index}>
+              <div className="whatwedo-card">
                 <WhatWeDoCard
                   title={card.title}
                   bgcolor={card.bgcolor}
