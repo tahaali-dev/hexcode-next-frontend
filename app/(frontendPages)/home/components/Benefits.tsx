@@ -69,9 +69,16 @@ const Benefits = () => {
           Get all our design services for a fixed monthly fee. <br />
           Enjoy all the benefits.
         </SectionSubHeading>
-        <PrimaryBtn padding="16px" fontSize="18px" className="mt-lg w-full">
-          Get start today
-        </PrimaryBtn>
+
+        <div className="mt-lg">
+          <PrimaryBtn
+            padding="16px"
+            fontSize="18px"
+            margin="0"
+            borderRadius="8px"
+            btnContent="Get start today"
+          />
+        </div>
 
         <BenefitsCardHolder>
           {benefitsData.map((benefit, index) => (
