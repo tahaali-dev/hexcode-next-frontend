@@ -93,9 +93,15 @@ const Footer = () => {
 
           <div className="mt-xxl">
             <LightHeading className="text-Uppercase">got an idea?</LightHeading>
-            <PrimaryBtn padding="16px" fontSize="18px" className="w-full mt-sm">
-              get in touch
-            </PrimaryBtn>
+            <div className="mt-sm">
+              <PrimaryBtn
+                padding="16px"
+                fontSize="18px"
+                margin="0"
+                borderRadius="8px"
+                btnContent="get in touch"
+              />
+            </div>
           </div>
 
           <LightHeading className="text-Uppercase mt-sm text-center">
