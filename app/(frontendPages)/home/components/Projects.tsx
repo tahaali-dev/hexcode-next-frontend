@@ -77,9 +77,14 @@ const Projects = () => {
             </Masonry>
           </ResponsiveMasonry>
 
-          <PrimaryBtn padding="18px" fontSize="16px">
-            See more projects
-          </PrimaryBtn>
+          <PrimaryBtn
+            padding="16px"
+            fontSize="18px"
+            margin="0"
+            borderRadius="8px"
+            btnContent="See more projects"
+          />
+
           <LightText className=" mt-md">
             As you know, most of my work we can’t disclose publicly,
             <br />

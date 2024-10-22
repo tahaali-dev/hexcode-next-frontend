@@ -37,9 +37,16 @@ const AboutUs = () => {
               We put people first, understanding that a well-crafted product
               significantly <br /> impacts the lives of those who use it.
             </SectionSubHeading>
-            <PrimaryBtn padding="16px" fontSize="18px" className="mt-lg w-full">
-              About us
-            </PrimaryBtn>
+
+            <div className="mt-lg">
+              <PrimaryBtn
+                padding="16px"
+                fontSize="18px"
+                margin="0"
+                borderRadius="8px"
+                btnContent="About us"
+              />
+            </div>
           </div>
           <StyledImage
             src={aboutUsHexagons}

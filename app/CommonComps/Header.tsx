@@ -53,9 +53,13 @@ const Header = () => {
                   height="20"
                 />
               </SecondaryBtn>
-              <PrimaryBtn padding="8px 16px" fontSize="16px">
-                Lets's Talk
-              </PrimaryBtn>
+              <PrimaryBtn
+                padding="8px 16px"
+                fontSize="16px"
+                margin="0"
+                borderRadius="8px"
+                btnContent="Lets's Talk"
+              />
             </div>
           </div>
         </HeaderWrapper>

@@ -172,9 +172,15 @@ export const ConsultingCard = ({
           ))}
         </p>
 
-        <PrimaryBtn padding="16px" fontSize="18px" className="mt-lg w-full">
-          Book a call
-        </PrimaryBtn>
+        <div className="mt-lg">
+          <PrimaryBtn
+            padding="16px"
+            fontSize="18px"
+            margin="0"
+            borderRadius="8px"
+            btnContent="Book a call"
+          />
+        </div>
       </div>
 
       <div className="right m-none">

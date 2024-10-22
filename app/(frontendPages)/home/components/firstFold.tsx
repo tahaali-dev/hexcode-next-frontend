@@ -42,9 +42,13 @@ const Firstfold = () => {
         </SectionTitle>
 
         <div className="d-flex align-center justify-center mt-xxl 2 g-lg btns-box">
-          <PrimaryBtn padding="16px" fontSize="18px" className="w-full">
-            Let's Talk
-          </PrimaryBtn>
+          <PrimaryBtn
+            padding="16px"
+            fontSize="18px"
+            margin="0"
+            borderRadius="8px"
+            btnContent="Book a call"
+          />
 
           <TertiaryBtn padding="16px" fontSize="18px" className="w-full">
             Our projects

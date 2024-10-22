@@ -61,9 +61,14 @@ const FAQ = () => {
           <SectionSubHeading>
             Still have questions? <u>Drop us a line</u>
           </SectionSubHeading>
-          <PrimaryBtn padding="16px" fontSize="18px" className="w-full">
-            book a call
-          </PrimaryBtn>
+
+          <PrimaryBtn
+            padding="16px"
+            fontSize="18px"
+            margin="0"
+            borderRadius="8px"
+            btnContent="book a call"
+          />
         </div>
       </FaqHeadingWrapper>
       <AccordionsWrapper>
