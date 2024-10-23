@@ -163,23 +163,25 @@ export const ConsultingCard = ({
           <h4 className="card-heading">{title}</h4>
         </div>
 
-        <p className="para-1">
-          {para1.split("\n").map((line, index) => (
-            <span key={index}>
-              {line}
-              <br />
-            </span>
-          ))}
-        </p>
+        <div>
+          <p className="para-1">
+            {para1.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                <br />
+              </span>
+            ))}
+          </p>
 
-        <div className="mt-lg">
-          <PrimaryBtn
-            padding="16px"
-            fontSize="18px"
-            margin="0"
-            borderRadius="8px"
-            btnContent="Book a call"
-          />
+          <div className="mt-lg">
+            <PrimaryBtn
+              padding="16px"
+              fontSize="18px"
+              margin="0"
+              borderRadius="8px"
+              btnContent="Book a call"
+            />
+          </div>
         </div>
       </div>
 
@@ -200,6 +202,9 @@ const ConsultingCardWrapper = styled.div<{ bgcolor: string }>`
 
   .left {
     padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .card-heading {
       color: var(--white-color);

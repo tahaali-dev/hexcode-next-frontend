@@ -21,8 +21,8 @@ export const SectionTitle = styled.h1<{
 
   /* Apply styles for medium screens (below 768px) */
   @media (max-width: 768px) {
-    font-size: 38px;
-    line-height: 48px;
+    font-size: 32px;
+    line-height: 42px;
   }
 `;
 

@@ -174,12 +174,15 @@ const WhatwedoWrapper = styled.section`
   }
 
   @media (max-width: 768px) {
+    padding: 32px 0px 0px 0px;
+
     .mt-lg {
       margin-top: 16px;
     }
 
     .cards-holder {
       gap: 24px;
+      padding: 32px 4px 4px 4px;
     }
   }
 `;

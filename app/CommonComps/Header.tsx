@@ -54,7 +54,7 @@ const Header = () => {
                 />
               </SecondaryBtn>
               <PrimaryBtn
-                padding="8px 16px"
+                padding="12px 16px"
                 fontSize="16px"
                 margin="0"
                 borderRadius="8px"

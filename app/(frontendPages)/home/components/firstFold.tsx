@@ -35,7 +35,11 @@ const Firstfold = () => {
           It's Hexcode, Your product design partner!
         </SectionTitle2>
 
-        <SectionTitle fontSize="64px" lineHeight="74px">
+        <SectionTitle
+          fontSize="64px"
+          lineHeight="74px"
+          className="main-heading"
+        >
           World-Class{" "}
           <HighlightText ref={highlightRef}>{currentText}</HighlightText>
           <br /> On‑Time. On‑Budget. On‑Point.
@@ -43,7 +47,7 @@ const Firstfold = () => {
 
         <div className="d-flex align-center justify-center mt-xxl 2 g-lg btns-box">
           <PrimaryBtn
-            padding="16px"
+            padding=" 16px"
             fontSize="18px"
             margin="0"
             borderRadius="8px"
@@ -67,6 +71,11 @@ const FirstFoldWrapper = styled.div`
 
   @media (max-width: 768px) {
     padding: 32px 8px;
+
+    .main-heading {
+      font-size: 38px;
+      line-height: 48px;
+    }
 
     .btns-box {
       flex-direction: column;

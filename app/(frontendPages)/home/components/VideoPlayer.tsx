@@ -17,80 +17,89 @@ const VideoPlayer: React.FC = () => {
 
   useEffect(() => {
     const video = videoRef.current;
+    const container = containerRef.current;
 
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top 20%",
-      end: "bottom 60%",
-      onEnter: () =>
-        gsap.to(video, {
-          scale: 1.34,
-          zIndex: 5,
-          duration: 0.7,
-          ease: "power2.out",
-        }),
-      onLeave: () =>
-        gsap.to(video, {
-          scale: 1,
-          zIndex: 3,
-          duration: 0.7,
-          ease: "power2.out",
-        }),
-      onEnterBack: () =>
-        gsap.to(video, {
-          scale: 1.5,
-          zIndex: 5,
-          duration: 0.7,
-          ease: "power2.out",
-        }),
-      onLeaveBack: () =>
-        gsap.to(video, {
-          scale: 1,
-          zIndex: 3,
-          duration: 0.7,
-          ease: "power2.out",
-        }),
-      // markers: true, // Enable markers for debugging
-    });
+    // Only apply effects if the screen width is greater than 768px (desktop screens)
+    const onlyDesktop = window.innerWidth > 768;
 
-    // Set up IntersectionObserver to manage video mute/unmute
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // If the video is fully visible, unmute
-            if (video) video.muted = false;
-          } else {
-            // If the video is not fully visible, mute
-            if (video) video.muted = true;
-          }
-        });
-      },
-      { threshold: 1.0 } // Trigger when the video is fully in view
-    );
+    if (onlyDesktop && video && container) {
+      // Create ScrollTrigger animation
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: container,
+        start: "top 20%",
+        end: "bottom 60%",
+        onEnter: () =>
+          gsap.to(video, {
+            scale: 1.34,
+            zIndex: 5,
+            duration: 0.7,
+            ease: "power2.out",
+          }),
+        onLeave: () =>
+          gsap.to(video, {
+            scale: 1,
+            zIndex: 3,
+            duration: 0.7,
+            ease: "power2.out",
+          }),
+        onEnterBack: () =>
+          gsap.to(video, {
+            scale: 1.5,
+            zIndex: 5,
+            duration: 0.7,
+            ease: "power2.out",
+          }),
+        onLeaveBack: () =>
+          gsap.to(video, {
+            scale: 1,
+            zIndex: 3,
+            duration: 0.7,
+            ease: "power2.out",
+          }),
+        // Enable markers for debugging if needed
+        // markers: true,
+      });
 
-    // Start observing the video element
-    if (video) {
+      // IntersectionObserver to handle video mute/unmute
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && video) {
+              // Unmute the video if fully visible
+              video.muted = false;
+            } else if (video) {
+              // Mute the video if not fully visible
+              video.muted = true;
+            }
+          });
+        },
+        { threshold: 1.0 } // Trigger when the video is fully in view
+      );
+
+      // Start observing the video element
       observer.observe(video);
-    }
 
-    // Clean up the ScrollTrigger and IntersectionObserver on unmount
-    return () => {
-      scrollTrigger.kill();
-      observer.disconnect();
-    };
+      // Clean up on component unmount or dependency change
+      return () => {
+        scrollTrigger.kill();
+        observer.disconnect();
+      };
+    }
   }, []);
 
   // Update mouse position on mouse move with GSAP animation
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const cursor = cursorRef.current;
-    if (cursor) {
-      gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1, // Speed of the cursor movement
-        ease: "power2.out",
-      });
+    // Check if it's a desktop screen
+    if (window.innerWidth > 768) {
+      const cursor = cursorRef.current;
+      if (cursor) {
+        gsap.to(cursor, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.1, // Speed of the cursor movement
+          ease: "power2.out",
+        });
+      }
     }
   };
 
@@ -118,8 +127,8 @@ const VideoPlayer: React.FC = () => {
       <VideoPlayerWrapper
         className={`p-xs d-flex ${isHovered ? "hovered" : ""}`}
         ref={containerRef}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => window.innerWidth > 768 && setIsHovered(true)}
+        onMouseLeave={() => window.innerWidth > 768 && setIsHovered(false)}
         onMouseMove={handleMouseMove}
         onClick={togglePlayPause} // Toggle play/pause on click
       >
@@ -133,7 +142,7 @@ const VideoPlayer: React.FC = () => {
           muted
           playsInline
         />
-        {isHovered && (
+        {isHovered && window.innerWidth > 768 && (
           <CustomCursor ref={cursorRef}>
             {isPlaying ? (
               <IconPause>⏸️</IconPause> // Pause icon
@@ -166,6 +175,8 @@ const VideoPlayerWrapper = styled.div`
   @media (max-width: 768px) {
     video {
       z-index: 3;
+      object-fit: initial;
+      height: 292px;
     }
   }
 `;

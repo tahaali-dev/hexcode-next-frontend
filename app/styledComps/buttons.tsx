@@ -132,7 +132,7 @@ const ShadeBlock = styled.div`
 export const SecondaryBtn = styled.button`
   border-radius: 8px;
   background: #232a2f;
-  padding: 8px;
+  padding: 12px;
   border: none;
   cursor: pointer;
   text-transform: uppercase;
