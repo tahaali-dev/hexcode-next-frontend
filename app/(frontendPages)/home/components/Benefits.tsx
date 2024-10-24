@@ -119,7 +119,7 @@ const BenefitsCardHolder = styled.div`
   padding: 0px 106px;
 
   @media (max-width: 768px) {
-    padding: 0px 18px;
+    padding: 0px 0px;
     grid-template-columns: 1fr 1fr;
     gap: 38px 16px;
     margin-top: 32px;

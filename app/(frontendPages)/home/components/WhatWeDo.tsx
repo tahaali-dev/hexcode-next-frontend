@@ -73,7 +73,7 @@ const WhatWeDo = () => {
     if (typeof window !== "undefined") {
       // Ensure GSAP runs on the client-side only
       const cards = gsap.utils.toArray(".whatwedo-card") as HTMLElement[]; // Cast to HTMLElement array
-      const spacer = 118;
+      const spacer = window.innerWidth <= 768 ? 64 : 118;
 
       if (cards.length > 0) {
         cards.forEach((card, index) => {
@@ -127,7 +127,7 @@ const WhatWeDo = () => {
         <div className="cards-holder">
           {cardsData.map((card, index) =>
             card.title === "Consulting" ? (
-              <div className="whatwedo-card">
+              <div className="whatwedo-card mh-402">
                 <ConsultingCard
                   title={card.title}
                   bgcolor={card.bgcolor}
@@ -137,7 +137,7 @@ const WhatWeDo = () => {
                 />
               </div>
             ) : (
-              <div className="whatwedo-card">
+              <div className="whatwedo-card ">
                 <WhatWeDoCard
                   title={card.title}
                   bgcolor={card.bgcolor}
@@ -178,6 +178,10 @@ const WhatwedoWrapper = styled.section`
 
     .mt-lg {
       margin-top: 16px;
+    }
+
+    .mh-402 {
+      min-height: 422px;
     }
 
     .cards-holder {
