@@ -127,7 +127,7 @@ const WhatWeDo = () => {
         <div className="cards-holder">
           {cardsData.map((card, index) =>
             card.title === "Consulting" ? (
-              <div className="whatwedo-card mh-402">
+              <div className="whatwedo-card mh-402" key={index}>
                 <ConsultingCard
                   title={card.title}
                   bgcolor={card.bgcolor}
@@ -137,7 +137,7 @@ const WhatWeDo = () => {
                 />
               </div>
             ) : (
-              <div className="whatwedo-card ">
+              <div className="whatwedo-card " key={index}>
                 <WhatWeDoCard
                   title={card.title}
                   bgcolor={card.bgcolor}

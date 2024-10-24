@@ -16,8 +16,19 @@ import {
   SectionTitle,
 } from "@/app/styledComps/texts";
 import ProjectCard from "@/app/styledComps/cards";
+import { useEffect, useState } from "react";
 
 const Projects = () => {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return null; // Prevent rendering until mounted
+  }
+
   return (
     <DashedContainer
       leftTop={false}

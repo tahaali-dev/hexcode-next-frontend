@@ -8,6 +8,7 @@ import {
   SectionTitle,
 } from "@/app/styledComps/texts";
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 const FAQ = () => {
@@ -41,6 +42,16 @@ const FAQ = () => {
       ),
     },
   ];
+
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return null; // Return null until the component is mounted on the client
+  }
 
   return (
     <DashedContainer
