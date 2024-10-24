@@ -96,8 +96,8 @@ const VideoPlayer: React.FC = () => {
         gsap.to(cursor, {
           x: e.clientX,
           y: e.clientY,
-          duration: 0.1, // Speed of the cursor movement
-          ease: "power2.out",
+          duration: 0.3,
+          ease: "elastic.out(1, 0.3)",
         });
       }
     }
@@ -145,9 +145,9 @@ const VideoPlayer: React.FC = () => {
         {isHovered && window.innerWidth > 768 && (
           <CustomCursor ref={cursorRef}>
             {isPlaying ? (
-              <IconPause>⏸️</IconPause> // Pause icon
+              <CursorText>Pause</CursorText> // Pause icon
             ) : (
-              <IconPlay>▶️</IconPlay> // Play icon
+              <CursorText>Play</CursorText> // Play icon
             )}
           </CustomCursor>
         )}
@@ -183,24 +183,17 @@ const VideoPlayerWrapper = styled.div`
 
 const CustomCursor = styled.div`
   position: absolute;
-  width: 40px; /* Set your desired width */
-  height: 40px; /* Set your desired height */
-  background-color: rgba(0, 0, 0, 0.7); /* Custom color */
-  border-radius: 50%; /* Make it rounded */
-  pointer-events: none; /* Make sure it doesn't block mouse events */
-  transform: translate(-50%, -50%); /* Center it based on mouse position */
-  z-index: 100; /* Ensure it is on top */
+  width: 80px;
+  height: 80px;
+  background-color: var(--white-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white; /* Icon color */
-  font-size: 20px; /* Icon size */
 `;
 
-const IconPlay = styled.span`
-  font-size: 20px; /* Adjust as needed */
-`;
-
-const IconPause = styled.span`
-  font-size: 20px; /* Adjust as needed */
+const CursorText = styled.span`
+  font-size: 20px;
 `;

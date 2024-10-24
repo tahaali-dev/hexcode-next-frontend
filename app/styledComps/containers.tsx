@@ -77,14 +77,14 @@ export const Container = styled.section<{
   .hex-left-top {
     position: absolute;
     top: -7px;
-    left: -8px;
+    left: -7px;
     z-index: 3;
   }
 
   .hex-left-bottom {
     position: absolute;
     bottom: -7px;
-    left: 6.4%;
+    left: 6.5%;
     z-index: 1;
   }
 
@@ -98,7 +98,7 @@ export const Container = styled.section<{
   .hex-right-bottom {
     position: absolute;
     bottom: -7px;
-    right: 6.4%;
+    right: 6.5%;
     z-index: 1;
   }
 
@@ -126,7 +126,7 @@ export const Container = styled.section<{
     .hex-left-bottom {
       position: absolute;
       bottom: -7px;
-      left: 12.1%;
+      left: 12%;
       z-index: 1;
     }
 
@@ -140,7 +140,7 @@ export const Container = styled.section<{
     .hex-right-bottom {
       position: absolute;
       bottom: -7px;
-      right: 12.1%;
+      right: 12%;
       z-index: 1;
     }
   }

@@ -85,7 +85,7 @@ const Projects = () => {
             btnContent="See more projects"
           />
 
-          <LightText className=" mt-md">
+          <LightText className="mt-md no-wrap">
             As you know, most of my work we can’t disclose publicly,
             <br />
             you know what I mean (under NDA)
@@ -120,8 +120,16 @@ const ProjectsWrapper = styled.div`
       margin-top: 32px;
     }
 
+    .no-wrap {
+      white-space: nowrap;
+    }
+
     .gap-64 {
       gap: 24px !important;
+    }
+
+    .w-full {
+      width: 100%;
     }
   }
 `;

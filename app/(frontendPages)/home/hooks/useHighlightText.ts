@@ -19,13 +19,13 @@ const useHighlightText = (texts: string[]) => {
     timeline
       .to(highlightRef.current, {
         opacity: 0,
-        duration: 0.5,
+        duration: 0.2,
         onComplete: updateText, // Update the text once it's faded out
       })
       .to(highlightRef.current, {
         opacity: 1,
         duration: 1,
-        ease: "elastic.out(1, 0.5)", // Elastic easing for bounce effect
+        ease: "power2.out", // Elastic easing for bounce effect
       });
 
     return () => {
