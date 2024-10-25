@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import Logo from "../public/basics/Logo.svg";
@@ -11,11 +12,45 @@ import HamburgerIcon from "../public/homepage/hamburgerIcon.svg";
 import { DashedContainer, StyledImage } from "../styledComps/containers";
 import { NavLink } from "../styledComps/Links";
 import { PrimaryBtn, SecondaryBtn } from "../styledComps/buttons";
+import gsap from "gsap";
 // Imports --------------------------------------------------------------
 
 const Header = () => {
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState("up");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection("down");
+      } else {
+        setScrollDirection("up");
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
+  useEffect(() => {
+    const header = document.querySelector("#header");
+
+    if (scrollDirection === "down") {
+      gsap.to(header, { y: -100, duration: 0.5, ease: "power2.out" }); // Hide animation
+    } else {
+      gsap.to(header, { y: 0, duration: 0.5, ease: "power2.out" }); // Show animation
+    }
+  }, [scrollDirection]);
+
   return (
-    <HeaderSticky>
+    <HeaderSticky id="header">
       <DashedContainer
         leftTop={false}
         leftBottom={true}
@@ -76,6 +111,7 @@ const HeaderSticky = styled.section`
   position: sticky;
   top: 0;
   z-index: 5;
+  will-change: transform;
 `;
 
 const HeaderWrapper = styled.header`
