@@ -7,8 +7,7 @@ import {
   SectionTitle2,
 } from "@/app/styledComps/texts";
 import styled from "@emotion/styled";
-import useHighlightText from "../hooks/useHighlightText";
-// Imports ------------------------------------------------
+import { useEffect, useState } from "react";
 
 // Array of strings to cycle through
 const highlightTexts = [
@@ -19,8 +18,24 @@ const highlightTexts = [
 ];
 
 const Firstfold = () => {
-  // Text Animation hook --------------------------------
-  const { highlightRef, currentText } = useHighlightText(highlightTexts);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    // Show first transition immediately
+    const immediateTransition = setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % highlightTexts.length);
+    }, 0);
+
+    // Regular interval to update the text
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % highlightTexts.length);
+    }, 2500);
+
+    return () => {
+      clearTimeout(immediateTransition); // Clear initial timeout
+      clearInterval(interval); // Clear interval on unmount
+    };
+  }, []);
 
   return (
     <DashedContainer
@@ -38,16 +53,25 @@ const Firstfold = () => {
         <SectionTitle
           fontSize="64px"
           lineHeight="74px"
-          className="main-heading"
+          className="main-heading "
         >
           World-Class{" "}
-          <HighlightText ref={highlightRef}>{currentText}</HighlightText>
-          <br /> On‑Time. On‑Budget. On‑Point.
+          <RollingTextWrapper>
+            <div
+              className="text-slide"
+              style={{ transform: `translateY(-${currentIndex * 25}%)` }}
+            >
+              {highlightTexts.map((text, index) => (
+                <HighlightText key={index}>{text}</HighlightText>
+              ))}
+            </div>
+          </RollingTextWrapper>
+          <br /> <p className="mt-8">On‑Time. On‑Budget. On‑Point.</p>
         </SectionTitle>
 
         <div className="d-flex align-center justify-center mt-xxl 2 g-lg btns-box">
           <PrimaryBtn
-            padding=" 16px"
+            padding="16px"
             fontSize="18px"
             margin="0"
             borderRadius="8px"
@@ -77,6 +101,9 @@ const FirstFoldWrapper = styled.div`
       line-height: 48px;
     }
 
+    .mt-8 {
+      margin-top: -8px;
+    }
     .btns-box {
       flex-direction: column;
 
@@ -84,5 +111,23 @@ const FirstFoldWrapper = styled.div`
         width: 100%;
       }
     }
+  }
+`;
+
+const RollingTextWrapper = styled.div`
+  display: inline-block;
+  position: relative;
+  height: 59px;
+  overflow: hidden;
+  width: max-content;
+
+  .text-slide {
+    display: flex;
+    flex-direction: column;
+    transition: transform 1s ease-in-out;
+  }
+
+  @media (max-width: 768px) {
+    height: 46px;
   }
 `;

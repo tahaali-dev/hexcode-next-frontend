@@ -100,7 +100,11 @@ export const SectionSubHeading = styled.p`
 
 export const HighlightText = styled.span`
   color: var(--clr-primary-l1);
-  min-width: ;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 export const LightText = styled.p`

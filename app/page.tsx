@@ -37,8 +37,8 @@ const Homepage = () => {
   return (
     <>
       <Firstfold />
-      <VideoPlayer />
       <CompaniesMarquee />
+      <VideoPlayer />
       <WhatWeDo />
       <EmptyContainer height="76px" />
       <Projects />
@@ -56,3 +56,12 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
+// Things to do today 25 oct 2024
+// -- Header Scroll hide and show - when scroll up hide header when scroll down show header (done)
+// -- change position of companies marquee after first fold also marquee logos sizes consistent (done 1/2)
+// -- Highlighted text roll animation in first fold ()
+// -- videPlayer animation on scroll play with width and height not Scaling ()
+// -- Primary btn animation more smooth ()
+// -- Dashed svg animate in what we do section ()
+// -- scroll cursor and scroll fix in The slider of Love ()
