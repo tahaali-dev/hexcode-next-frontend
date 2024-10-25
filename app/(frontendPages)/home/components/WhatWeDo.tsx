@@ -81,12 +81,12 @@ const WhatWeDo = () => {
             trigger: card,
             start: `top-=${index * spacer} top+=15%`,
             endTrigger: ".cards-holder",
-            end: `bottom top+=${300 + cards.length * spacer}`,
+            end: `bottom top+=${500 + cards.length * spacer}`,
             pin: true,
             pinSpacing: false,
             id: `card-pin-${index}`,
             scrub: true,
-            // markers: true,
+            markers: true,
           });
         });
       }
