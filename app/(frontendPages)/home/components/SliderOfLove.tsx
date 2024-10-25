@@ -22,23 +22,38 @@ const SliderOfLove = () => {
   useEffect(() => {
     setNumOfCards(sliderRef.current ? sliderRef.current.children.length : 0);
 
-    // GSAP Custom Cursor animation
-    const handleMouseMove = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, {
-          duration: 0.3,
-          x: e.clientX - cursorRef.current.offsetWidth / 2,
-          y: e.clientY - cursorRef.current.offsetHeight / 2,
-          ease: "power3.out",
+    // Handle custom cursor ---
+    let posX = 0,
+      posY = 0;
+
+    let mouseX = 0,
+      mouseY = 0;
+
+    gsap.to(cursorRef.current, {
+      duration: 0.01, // Reduces delay, smoother transition
+      ease: "power3.out", // Adds smooth easing
+      repeat: -1,
+      onRepeat: function () {
+        posX += (mouseX - posX) / 10; // Adjust easing strength
+        posY += (mouseY - posY) / 10;
+
+        gsap.set(cursorRef.current, {
+          css: {
+            left: posX - 1,
+            top: posY - 2,
+          },
         });
-      }
-    };
+      },
+    });
 
-    document.addEventListener("mousemove", handleMouseMove);
+    document
+      .querySelector(".slider-container")
+      ?.addEventListener("mousemove", (e: any) => {
+        console.log("event", e);
 
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
   }, []);
 
   // Handle mouse down
@@ -102,7 +117,11 @@ const SliderOfLove = () => {
         borderTopNone="none"
       >
         {/* Custom Cursor */}
-        {showCursor && <CustomCursor ref={cursorRef}>Scroll</CustomCursor>}
+        {showCursor && (
+          <CustomCursor ref={cursorRef}>
+            <CursorText>Scroll</CursorText>
+          </CustomCursor>
+        )}
 
         <SliderLoveWrapper
           ref={sliderRef}
@@ -115,6 +134,7 @@ const SliderOfLove = () => {
           }}
           onMouseEnter={() => setShowCursor(true)} // Show cursor when entering the slider
           onScroll={handleScroll}
+          className="slider-container"
         >
           {/* Cards */}
           <SliderLoveCard
@@ -171,6 +191,7 @@ const SliderOfLove = () => {
             clientPhoto={clientPhoto}
             clientPosition="Co-founder of Volt"
           />
+          <div className="overlay"></div>
         </SliderLoveWrapper>
       </DashedContainer>
 
@@ -191,7 +212,7 @@ const SliderOfLove = () => {
     </>
   );
 };
-      
+
 export default SliderOfLove;
 
 // Custom Cursor Styles ---
@@ -199,16 +220,18 @@ const CustomCursor = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   background-color: var(--clr-primary);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: 9;
+  border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const CursorText = styled.span`
+  font-size: 20px;
   color: var(--white-color);
 `;
 
@@ -228,8 +251,15 @@ const SliderLoveWrapper = styled.div`
   overflow-x: auto;
   flex-wrap: nowrap;
   scroll-behavior: smooth;
-  user-select: none;
   cursor: none;
+
+  .overlay {
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
 
   /* Hide scrollbar */
   ::-webkit-scrollbar {

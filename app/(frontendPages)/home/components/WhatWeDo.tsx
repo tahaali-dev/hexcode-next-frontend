@@ -86,7 +86,7 @@ const WhatWeDo = () => {
             pinSpacing: false,
             id: `card-pin-${index}`,
             scrub: true,
-            markers: true,
+            // markers: true,
           });
         });
       }

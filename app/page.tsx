@@ -61,7 +61,7 @@ export default Homepage;
 // -- Header Scroll hide and show - when scroll up hide header when scroll down show header (done)
 // -- Highlighted text roll animation in first fold (done)
 // -- change position of companies marquee after first fold also marquee logos sizes consistent (done 1/2)
-// -- videPlayer animation on scroll play with width and height not Scaling and custom cursor fix (done 1/2)
+// -- videPlayer animation on scroll play with width and height not Scaling and custom cursor fix (done 2/2)
 // -- Primary btn animation more smooth ()
 // -- Dashed svg animate in what we do section ()
 // -- scroll cursor and scroll fix in The slider of Love ()
