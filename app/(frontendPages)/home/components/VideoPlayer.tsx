@@ -13,7 +13,7 @@ const VideoPlayer: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -48,28 +48,45 @@ const VideoPlayer: React.FC = () => {
 
       observer.observe(video);
 
+      // Handle custom cursor ---
+      let posX = 0,
+        posY = 0;
+
+      let mouseX = 0,
+        mouseY = 0;
+
+      gsap.to(cursorRef.current, {
+        duration: 0.01, // Reduces delay, smoother transition
+        ease: "power3.out", // Adds smooth easing
+        repeat: -1,
+        onRepeat: function () {
+          posX += (mouseX - posX) / 10; // Adjust easing strength
+          posY += (mouseY - posY) / 10;
+
+          gsap.set(cursorRef.current, {
+            css: {
+              left: posX - 1,
+              top: posY - 2,
+            },
+          });
+        },
+      });
+
+      document
+        .querySelector(".video-container")
+        ?.addEventListener("mousemove", (e: any) => {
+          console.log("event", e);
+
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
       return () => {
         observer.disconnect();
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       };
     }
   }, []);
-
-  // Update mouse position on mouse move with GSAP animation
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Check if it's a desktop screen
-    if (window.innerWidth > 768) {
-      const cursor = cursorRef.current;
-      if (cursor) {
-        gsap.to(cursor, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.3,
-          ease: "elastic.out(1, 0.3)",
-        });
-      }
-    }
-  };
 
   // Toggle video play/pause
   const togglePlayPause = () => {
@@ -93,11 +110,10 @@ const VideoPlayer: React.FC = () => {
       borderTopNone="none"
     >
       <VideoPlayerWrapper
-        className={`p-xs d-flex ${isHovered ? "hovered" : ""}`}
+        className={`p-xs d-flex ${isHovered ? "hovered" : ""} video-container`}
         ref={containerRef}
         onMouseEnter={() => window.innerWidth > 768 && setIsHovered(true)}
         onMouseLeave={() => window.innerWidth > 768 && setIsHovered(false)}
-        onMouseMove={handleMouseMove}
         onClick={togglePlayPause} // Toggle play/pause on click
       >
         <video
@@ -110,16 +126,19 @@ const VideoPlayer: React.FC = () => {
           muted
           playsInline
         />
-        {isHovered && window.innerWidth > 768 && (
-          <CustomCursor ref={cursorRef}>
-            {isPlaying ? (
-              <CursorText>Pause</CursorText> // Pause icon
-            ) : (
-              <CursorText>Play</CursorText> // Play icon
-            )}
-          </CustomCursor>
-        )}
+
+        <div className="overlay"></div>
       </VideoPlayerWrapper>
+
+      {isHovered && window.innerWidth > 768 && (
+        <CustomCursor ref={cursorRef}>
+          {isPlaying ? (
+            <CursorText>Pause</CursorText> // Pause icon
+          ) : (
+            <CursorText>Play</CursorText> // Play icon
+          )}
+        </CustomCursor>
+      )}
     </DashedContainer>
   );
 };
@@ -127,22 +146,25 @@ const VideoPlayer: React.FC = () => {
 export default VideoPlayer;
 
 const VideoPlayerWrapper = styled.div`
-  position: relative; /* To position the custom cursor */
-
+  position: relative;
   video {
     border-radius: 16px;
-    transform-origin: center; /* Ensure scaling happens from the center */
-    z-index: 3;
+    transform-origin: center;
   }
 
-  /* Custom cursor styles */
   &.hovered {
-    cursor: none; /* Hide default cursor */
+    cursor: none;
   }
 
+  .overlay {
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
   @media (max-width: 768px) {
     video {
-      z-index: 3;
       object-fit: initial;
       height: 292px;
     }
@@ -150,13 +172,14 @@ const VideoPlayerWrapper = styled.div`
 `;
 
 const CustomCursor = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 80px;
   height: 80px;
   background-color: var(--white-color);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 100;
+  z-index: 9;
+  border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
