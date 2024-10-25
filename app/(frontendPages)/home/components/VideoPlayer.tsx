@@ -19,70 +19,38 @@ const VideoPlayer: React.FC = () => {
     const video = videoRef.current;
     const container = containerRef.current;
 
-    // Only apply effects if the screen width is greater than 768px (desktop screens)
-    const onlyDesktop = window.innerWidth > 768;
-
-    if (onlyDesktop && video && container) {
-      // Create ScrollTrigger animation
-      const scrollTrigger = ScrollTrigger.create({
-        trigger: container,
-        start: "top 20%",
-        end: "bottom 60%",
-        onEnter: () =>
-          gsap.to(video, {
-            scale: 1.34,
-            zIndex: 5,
-            duration: 0.7,
-            ease: "power2.out",
-          }),
-        onLeave: () =>
-          gsap.to(video, {
-            scale: 1,
-            zIndex: 3,
-            duration: 0.7,
-            ease: "power2.out",
-          }),
-        onEnterBack: () =>
-          gsap.to(video, {
-            scale: 1.5,
-            zIndex: 5,
-            duration: 0.7,
-            ease: "power2.out",
-          }),
-        onLeaveBack: () =>
-          gsap.to(video, {
-            scale: 1,
-            zIndex: 3,
-            duration: 0.7,
-            ease: "power2.out",
-          }),
-        // Enable markers for debugging if needed
-        // markers: true,
+    if (window.innerWidth > 768 && video && container) {
+      gsap.to(video, {
+        width: "98.5vw",
+        height: "100vh",
+        borderRadius: 0,
+        scrollTrigger: {
+          trigger: video,
+          start: "top 50%",
+          end: "bottom 80%",
+          scrub: true,
+          onLeave: () => ScrollTrigger.refresh(), // Refresh on leave
+        },
       });
 
-      // IntersectionObserver to handle video mute/unmute
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting && video) {
-              // Unmute the video if fully visible
+            if (entry.isIntersecting) {
               video.muted = false;
-            } else if (video) {
-              // Mute the video if not fully visible
+            } else {
               video.muted = true;
             }
           });
         },
-        { threshold: 1.0 } // Trigger when the video is fully in view
+        { threshold: 1.0 }
       );
 
-      // Start observing the video element
       observer.observe(video);
 
-      // Clean up on component unmount or dependency change
       return () => {
-        scrollTrigger.kill();
         observer.disconnect();
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       };
     }
   }, []);
