@@ -7,7 +7,7 @@ import VIIcon from "../../../public/homepage/visualIdentity.svg";
 import WPIcon from "../../../public/homepage/websiteandproduct.svg";
 import CDIcon from "../../../public/homepage/creativedev.svg";
 import ConIcon from "../../../public/homepage/consulting.svg";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DashedContainer, StyledImage } from "@/app/styledComps/containers";
 import {
   HexSectionName,
@@ -17,6 +17,8 @@ import {
 import { ConsultingCard, WhatWeDoCard } from "@/app/styledComps/cards";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import LottieAnimation from "@/app/utils/LottieAnimation";
+import ArrowLottie from "../../../public/basics/arrow.json";
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -34,6 +36,9 @@ const para2Dev = `Logotype, Typography & Colour\nIllustrations & 3D\nPhotography
 const Consulting = `Our website design services blend innovation\nand creativity to deliver user-centric solutions\nthat elevate your brand and engage your\naudience.`;
 
 const WhatWeDo = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const lottieRef = useRef(null); // Create a ref for the Lottie animation
+
   const cardsData = [
     {
       title: "Visual Identity",
@@ -71,8 +76,7 @@ const WhatWeDo = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Ensure GSAP runs on the client-side only
-      const cards = gsap.utils.toArray(".whatwedo-card") as HTMLElement[]; // Cast to HTMLElement array
+      const cards = gsap.utils.toArray(".whatwedo-card") as HTMLElement[];
       const spacer = window.innerWidth <= 768 ? 64 : 118;
 
       if (cards.length > 0) {
@@ -86,10 +90,18 @@ const WhatWeDo = () => {
             pinSpacing: false,
             id: `card-pin-${index}`,
             scrub: true,
-            // markers: true,
           });
         });
       }
+
+      ScrollTrigger.create({
+        trigger: ".lottie-box",
+        start: "top 85%",
+        // markers: true,
+        scrub: true,
+        onEnter: () => setIsPlaying(true),
+        onLeaveBack: () => setIsPlaying(false),
+      });
 
       // Cleanup on unmount
       return () => {
@@ -116,13 +128,14 @@ const WhatWeDo = () => {
           Your go-to solution for web and mobile apps, <br />
           like many founders, startups, and agencies do.
         </SectionSubHeading>
-        <StyledImage
-          src={curlyLine}
-          width="148"
-          height="195"
-          alt={`curly-line`}
-          className="mt-xxl"
-        />
+
+        <LottieBox className="lottie-box">
+          <LottieAnimation
+            animationData={ArrowLottie}
+            loop={false}
+            isPlaying={isPlaying}
+          />
+        </LottieBox>
 
         <div className="cards-holder">
           {cardsData.map((card, index) =>
@@ -169,7 +182,7 @@ const WhatwedoWrapper = styled.section`
     display: flex;
     flex-direction: column;
     gap: 56px;
-    padding: 64px 4px 4px 4px;
+    padding: 42px 4px 4px 4px;
     width: 100%;
   }
 
@@ -189,4 +202,9 @@ const WhatwedoWrapper = styled.section`
       padding: 32px 4px 4px 4px;
     }
   }
+`;
+
+const LottieBox = styled.div`
+  rotate: 180deg;
+  width: 198px;
 `;

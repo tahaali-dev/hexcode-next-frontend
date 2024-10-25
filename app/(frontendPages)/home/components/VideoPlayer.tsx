@@ -21,7 +21,7 @@ const VideoPlayer: React.FC = () => {
 
     if (window.innerWidth > 768 && video && container) {
       gsap.to(video, {
-        width: "98.5vw",
+        width: "98.2vw",
         height: "100vh",
         borderRadius: 0,
         scrollTrigger: {
