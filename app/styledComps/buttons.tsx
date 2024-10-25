@@ -2,7 +2,6 @@ import { useRef, useEffect } from "react";
 import styled from "@emotion/styled";
 import gsap from "gsap";
 
-// Button component with the gradient shades animation
 export const PrimaryBtn = ({
   padding,
   fontSize,
@@ -23,18 +22,21 @@ export const PrimaryBtn = ({
   useEffect(() => {
     const shadeBlocks: any =
       shadeContainerRef.current?.querySelectorAll(".shade");
-    gsap.set(shadeBlocks, { opacity: 0 });
+
+    // Set initial yPercent and opacity for the bottom-to-top effect, hidden initially
+    gsap.set(shadeBlocks, { yPercent: 100, opacity: 0 });
 
     const hoverAnimation = gsap.timeline({ paused: true });
     shadeBlocks?.forEach((shade: any, index: number) => {
       hoverAnimation.to(
         shade,
         {
+          yPercent: 0,
           opacity: 1,
-          duration: 0.1,
-          ease: "power1.inOut",
+          duration: 0.3,
+          ease: "power1.out",
         },
-        index * 0.1 // delay between each shade appearance
+        index * 0.1 // Staggering each shade
       );
     });
 
@@ -125,8 +127,7 @@ const GradientContainer = styled.div<{
 const ShadeBlock = styled.div`
   width: 100%;
   height: 100%;
-  height: 10px;
-  opacity: 0;
+  opacity: 0; /* Hidden by default */
 `;
 
 export const SecondaryBtn = styled.button`
