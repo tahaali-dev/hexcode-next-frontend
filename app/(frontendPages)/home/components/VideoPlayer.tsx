@@ -150,6 +150,7 @@ const VideoPlayerWrapper = styled.div`
   video {
     border-radius: 16px;
     transform-origin: center;
+    object-fit: initial;
   }
 
   &.hovered {

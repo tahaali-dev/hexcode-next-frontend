@@ -96,7 +96,7 @@ const Projects = () => {
             btnContent="See more projects"
           />
 
-          <LightText className="mt-md no-wrap">
+          <LightText className="mt-md ">
             As you know, most of my work we can’t disclose publicly,
             <br />
             you know what I mean (under NDA)
