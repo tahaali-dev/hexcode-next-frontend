@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const VideoPlayer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const cursorRef = useRef<HTMLVideoElement | null>(null);
+  const cursorRef = useRef(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
