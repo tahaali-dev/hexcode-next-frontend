@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger);
 const VideoPlayer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const cursorRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
 
@@ -21,15 +20,15 @@ const VideoPlayer: React.FC = () => {
 
     if (window.innerWidth > 768 && video && container) {
       gsap.to(video, {
-        width: "98.2vw",
+        width: `${window.innerWidth > 1440 ? "98.2vw" : "97.6vw"}`,
         height: "100vh",
-        borderRadius: 0,
+        padding: 0,
         scrollTrigger: {
           trigger: video,
           start: "top 50%",
           end: "bottom 80%",
           scrub: true,
-          onLeave: () => ScrollTrigger.refresh(), // Refresh on leave
+          onLeave: () => ScrollTrigger.refresh(),
         },
       });
 
@@ -47,39 +46,6 @@ const VideoPlayer: React.FC = () => {
       );
 
       observer.observe(video);
-
-      // Handle custom cursor ---
-      let posX = 0,
-        posY = 0;
-
-      let mouseX = 0,
-        mouseY = 0;
-
-      gsap.to(cursorRef.current, {
-        duration: 0.01, // Reduces delay, smoother transition
-        ease: "power3.out", // Adds smooth easing
-        repeat: -1,
-        onRepeat: function () {
-          posX += (mouseX - posX) / 10; // Adjust easing strength
-          posY += (mouseY - posY) / 10;
-
-          gsap.set(cursorRef.current, {
-            css: {
-              left: posX - 1,
-              top: posY - 2,
-            },
-          });
-        },
-      });
-
-      document
-        .querySelector(".video-container")
-        ?.addEventListener("mousemove", (e: any) => {
-          console.log("event", e);
-
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-        });
 
       return () => {
         observer.disconnect();
@@ -100,6 +66,43 @@ const VideoPlayer: React.FC = () => {
       setIsPlaying(!isPlaying);
     }
   };
+
+  // Handle Mouse Move
+  useEffect(() => {
+    let posX = 0,
+      posY = 0;
+    let mouseX = 0,
+      mouseY = 0;
+
+    const updateCursor = gsap.to(".custom-cursor", {
+      duration: 0.01,
+      ease: "power3.out",
+      repeat: -1,
+      onRepeat: () => {
+        posX += (mouseX - posX) / 10;
+        posY += (mouseY - posY) / 10;
+
+        gsap.set(".custom-cursor", {
+          css: {
+            left: posX - 1,
+            top: posY - 2,
+          },
+        });
+      },
+    });
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
+
+    containerRef.current?.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      containerRef.current?.removeEventListener("mousemove", handleMouseMove);
+      updateCursor.kill();
+    };
+  }, []);
 
   return (
     <DashedContainer
@@ -131,11 +134,11 @@ const VideoPlayer: React.FC = () => {
       </VideoPlayerWrapper>
 
       {isHovered && window.innerWidth > 768 && (
-        <CustomCursor ref={cursorRef}>
+        <CustomCursor className="custom-cursor">
           {isPlaying ? (
-            <CursorText>Pause</CursorText> // Pause icon
+            <CursorText>Pause</CursorText>
           ) : (
-            <CursorText>Play</CursorText> // Play icon
+            <CursorText>Play</CursorText>
           )}
         </CustomCursor>
       )}

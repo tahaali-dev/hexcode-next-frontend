@@ -8,88 +8,98 @@ import { HexSectionName, SectionTitle } from "@/app/styledComps/texts";
 import { SliderLoveCard } from "@/app/styledComps/cards";
 import gsap from "gsap";
 
+// Main Slider Component
 const SliderOfLove = () => {
-  const sliderRef: any = useRef(null);
-  const cursorRef = useRef<HTMLDivElement | null>(null); // Ref for the custom cursor
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0); // To track the current card index
-  const [numOfCards, setNumOfCards] = useState(0); // To store the number of cards
-  const [showCursor, setShowCursor] = useState(false); // To control visibility of the custom cursor
+  const sliderRef: any = useRef(null); // Reference to slider container
+  const [isDragging, setIsDragging] = useState(false); // Track dragging state
+  const [startX, setStartX] = useState(0); // Track starting X position
+  const [scrollLeft, setScrollLeft] = useState(0); // Track initial scroll position
+  const [currentIndex, setCurrentIndex] = useState(0); // Track the current card index
+  const [numOfCards, setNumOfCards] = useState(0); // Store number of cards in the slider
+  const [showCursor, setShowCursor] = useState(false); // Control custom cursor visibility
 
-  // Get the number of cards in the slider
+  // Calculate number of cards in slider on component mount
   useEffect(() => {
-    setNumOfCards(sliderRef.current ? sliderRef.current.children.length : 0);
+    setNumOfCards(
+      sliderRef.current ? sliderRef.current.children.length - 1 : 0
+    );
+  }, []);
 
-    // Handle custom cursor ---
+  // Custom cursor animation using GSAP
+  useEffect(() => {
     let posX = 0,
       posY = 0;
-
     let mouseX = 0,
       mouseY = 0;
 
-    gsap.to(cursorRef.current, {
-      duration: 0.01, // Reduces delay, smoother transition
-      ease: "power3.out", // Adds smooth easing
+    // GSAP animation to smoothly follow cursor
+    const updateCursor = gsap.to(".custom-cursor", {
+      duration: 0.01,
+      ease: "power3.out",
       repeat: -1,
-      onRepeat: function () {
-        posX += (mouseX - posX) / 10; // Adjust easing strength
+      onRepeat: () => {
+        posX += (mouseX - posX) / 10;
         posY += (mouseY - posY) / 10;
 
-        gsap.set(cursorRef.current, {
-          css: {
-            left: posX - 1,
-            top: posY - 2,
-          },
+        gsap.set(".custom-cursor", {
+          css: { left: posX - 1, top: posY - 2 },
         });
       },
     });
 
-    document
-      .querySelector(".slider-container")
-      ?.addEventListener("mousemove", (e: any) => {
-        console.log("event", e);
+    // Update mouse coordinates
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
 
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      });
+    sliderRef.current?.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      sliderRef.current?.removeEventListener("mousemove", handleMouseMove);
+      updateCursor.kill(); // Cleanup GSAP animation
+    };
   }, []);
 
-  // Handle mouse down
+  // Handle mouse down for drag functionality
   const handleMouseDown = (e: any) => {
-    setIsDragging(true);
-    setStartX(e.pageX - sliderRef.current.offsetLeft);
-    setScrollLeft(sliderRef.current.scrollLeft);
-    gsap.to(cursorRef.current, { scale: 1.5 }); // Scale cursor on grab
+    if (window.innerWidth > 768) {
+      setIsDragging(true);
+      setStartX(e.pageX - sliderRef.current.offsetLeft); // Track starting position
+      setScrollLeft(sliderRef.current.scrollLeft); // Set initial scroll position
+      gsap.to(".custom-cursor", { scale: 1.5 }); // Scale cursor on grab
+    }
   };
 
-  // Handle mouse move
+  // Handle mouse movement for dragging
   const handleMouseMove = (e: any) => {
-    if (!isDragging) return; // Only scroll if dragging
-    e.preventDefault();
-    const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX) * 3; // Scroll speed factor
-    sliderRef.current.scrollLeft = scrollLeft - walk;
+    if (window.innerWidth > 768) {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - sliderRef.current.offsetLeft;
+      const walk = (x - startX) * 3; // Adjust scroll speed
+      sliderRef.current.scrollLeft = scrollLeft - walk;
+    }
   };
 
-  // Handle mouse up / leave
+  // Handle mouse release and leave
   const handleMouseUpOrLeave = () => {
-    setIsDragging(false);
-    gsap.to(cursorRef.current, { scale: 1 }); // Return cursor to normal size
-
+    if (window.innerWidth > 768) {
+      setIsDragging(false);
+      gsap.to(".custom-cursor", { scale: 1 }); // Reset cursor size
+    }
     const sliderWidth = sliderRef.current.offsetWidth;
     const scrollPos = sliderRef.current.scrollLeft;
-    const newIndex = Math.round(scrollPos / sliderWidth); // Calculate the visible card index
-    setCurrentIndex(newIndex); // Update the current card index
+    const newIndex = Math.round(scrollPos / sliderWidth); // Calculate current card index
+    setCurrentIndex(newIndex); // Update card index
   };
 
-  // Update active dot on scroll
+  // Handle scroll to update active dot indicator
   const handleScroll = () => {
     const sliderWidth = sliderRef.current.offsetWidth;
     const scrollPos = sliderRef.current.scrollLeft;
-    const newIndex = Math.round(scrollPos / sliderWidth); // Calculate the visible card index
-    setCurrentIndex(newIndex); // Update the current card index
+    const newIndex = Math.round(scrollPos / sliderWidth); // Calculate current card index
+    setCurrentIndex(newIndex);
   };
 
   return (
@@ -101,6 +111,7 @@ const SliderOfLove = () => {
         rightBottom={true}
         borderTopNone="none"
       >
+        {/* Heading Section */}
         <SliderHeadingWrapper>
           <HexSectionName title="THE SLIDER OF LOVE" />
           <SectionTitle fontSize="54px" lineHeight="64px" className="mt-lg">
@@ -118,11 +129,12 @@ const SliderOfLove = () => {
       >
         {/* Custom Cursor */}
         {showCursor && (
-          <CustomCursor ref={cursorRef}>
+          <CustomCursor className="custom-cursor">
             <CursorText>Scroll</CursorText>
           </CustomCursor>
         )}
 
+        {/* Slider Section */}
         <SliderLoveWrapper
           ref={sliderRef}
           onMouseDown={handleMouseDown}
@@ -130,68 +142,22 @@ const SliderOfLove = () => {
           onMouseUp={handleMouseUpOrLeave}
           onMouseLeave={() => {
             handleMouseUpOrLeave();
-            setShowCursor(false); // Hide cursor when leaving the slider
+            setShowCursor(false);
           }}
-          onMouseEnter={() => setShowCursor(true)} // Show cursor when entering the slider
+          onMouseEnter={() => window.innerWidth > 768 && setShowCursor(true)}
           onScroll={handleScroll}
-          className="slider-container"
         >
-          {/* Cards */}
-          <SliderLoveCard
-            banner={clientLove}
-            clientName="Lalit Bihani"
-            clientPhoto={clientPhoto}
-            clientPosition="Co-founder of Volt"
-          />
-          <SliderLoveCard
-            banner={clientLove}
-            clientName="Lalit Bihani"
-            clientPhoto={clientPhoto}
-            clientPosition="Co-founder of Volt"
-          />{" "}
-          <SliderLoveCard
-            banner={clientLove}
-            clientName="Lalit Bihani"
-            clientPhoto={clientPhoto}
-            clientPosition="Co-founder of Volt"
-          />{" "}
-          <SliderLoveCard
-            banner={clientLove}
-            clientName="Lalit Bihani"
-            clientPhoto={clientPhoto}
-            clientPosition="Co-founder of Volt"
-          />{" "}
-          <SliderLoveCard
-            banner={clientLove}
-            clientName="Lalit Bihani"
-            clientPhoto={clientPhoto}
-            clientPosition="Co-founder of Volt"
-          />{" "}
-          <SliderLoveCard
-            banner={clientLove}
-            clientName="Lalit Bihani"
-            clientPhoto={clientPhoto}
-            clientPosition="Co-founder of Volt"
-          />{" "}
-          <SliderLoveCard
-            banner={clientLove}
-            clientName="Lalit Bihani"
-            clientPhoto={clientPhoto}
-            clientPosition="Co-founder of Volt"
-          />{" "}
-          <SliderLoveCard
-            banner={clientLove}
-            clientName="Lalit Bihani"
-            clientPhoto={clientPhoto}
-            clientPosition="Co-founder of Volt"
-          />{" "}
-          <SliderLoveCard
-            banner={clientLove}
-            clientName="Lalit Bihani"
-            clientPhoto={clientPhoto}
-            clientPosition="Co-founder of Volt"
-          />
-          <div className="overlay"></div>
+          {/* Slider Cards */}
+          {Array.from({ length: 10 }).map((_, index) => (
+            <SliderLoveCard
+              key={index} // Ensure each component has a unique key
+              banner={clientLove}
+              clientName="Lalit Bihani"
+              clientPhoto={clientPhoto}
+              clientPosition="Co-founder of Volt"
+            />
+          ))}
+          <div className="overlay m-none"></div>
         </SliderLoveWrapper>
       </DashedContainer>
 
@@ -202,7 +168,7 @@ const SliderOfLove = () => {
         rightBottom={true}
         borderTopNone="none"
       >
-        {/* Dots for navigation (only visible on mobile) */}
+        {/* Dots for mobile navigation */}
         <SliderDotsWrapper>
           {Array.from({ length: numOfCards }).map((_, index) => (
             <Dot key={index} active={index === currentIndex} />
@@ -215,7 +181,7 @@ const SliderOfLove = () => {
 
 export default SliderOfLove;
 
-// Custom Cursor Styles ---
+// Styled components for custom cursor
 const CustomCursor = styled.div`
   position: fixed;
   top: 0;
@@ -235,7 +201,7 @@ const CursorText = styled.span`
   color: var(--white-color);
 `;
 
-// Other Styles ---
+// Styled components for headings
 const SliderHeadingWrapper = styled.div`
   padding: 62px 0px;
 
@@ -244,6 +210,7 @@ const SliderHeadingWrapper = styled.div`
   }
 `;
 
+// Styled component for slider wrapper
 const SliderLoveWrapper = styled.div`
   padding: 4px;
   display: flex;
@@ -251,7 +218,6 @@ const SliderLoveWrapper = styled.div`
   overflow-x: auto;
   flex-wrap: nowrap;
   scroll-behavior: smooth;
-  cursor: none;
 
   .overlay {
     position: absolute;
@@ -269,33 +235,44 @@ const SliderLoveWrapper = styled.div`
   scrollbar-width: none;
 
   & > div {
-    flex: 0 0 calc((100% - 52px) / 3); /* Show 3 cards at a time */
+    flex: 0 0 calc((100% - 52px) / 3);
 
     @media (max-width: 1024px) {
-      flex: 0 0 calc((100% - 52px) / 2); /* Show 2 cards on tablet */
+      flex: 0 0 calc((100% - 52px) / 2);
     }
 
     @media (max-width: 768px) {
-      flex: 0 0 100%; /* Show 1 card on mobile */
+      flex: 0 0 100%;
     }
-  }
-
-  &.active {
-    cursor: grabbing;
   }
 
   @media (max-width: 1440px) {
     max-width: 86vw;
+    .overlay {
+      max-width: 86vw;
+    }
   }
   @media (min-width: 1441px) {
-    max-width: 74vw;
+    max-width: 75vw;
+    .overlay {
+      max-width: 75vw;
+    }
   }
-
+  @media (max-width: 1024px) {
+    max-width: 84.5vw;
+    .overlay {
+      max-width: 84.5vw;
+    }
+  }
   @media (max-width: 768px) {
     max-width: 92vw;
+    .overlay {
+      max-width: 92vw;
+    }
   }
 `;
 
+// Styled component for dot indicators (visible only on mobile)
 const SliderDotsWrapper = styled.div`
   display: none;
 
@@ -306,12 +283,12 @@ const SliderDotsWrapper = styled.div`
   }
 `;
 
+// Styled component for individual dots
 const Dot = styled.div<{ active: boolean }>`
   width: 8px;
   height: 8px;
+  margin: 0px 6px;
   border-radius: 50%;
-  background-color: ${({ active }) =>
-    active ? "var(--clr-primary)" : "var(--clr-light2)"};
-  margin: 0 4px;
-  transition: background-color 0.3s ease;
+  background-color: ${(props) =>
+    props.active ? "var(--clr-primary)" : "var(--clr-light2)"};
 `;

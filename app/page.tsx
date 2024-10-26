@@ -21,9 +21,7 @@ const Homepage = () => {
     const lenis = new Lenis();
 
     // Listen for the scroll event and log the event data
-    lenis.on("scroll", (e) => {
-      // console.log(e);
-    });
+    lenis.on("scroll", (e) => {});
 
     // Use requestAnimationFrame to continuously update the scroll
     function raf(time: any) {
@@ -51,7 +49,7 @@ const Homepage = () => {
       <EmptyContainer height="76px" />
       <FAQ />
       <Footer />
-      {/* <div className="custom-cursor"></div> */}
+      <div className="custom-cursor"></div>
     </>
   );
 };
@@ -64,6 +62,11 @@ export default Homepage;
 // -- scroll cursor and scroll fix in The slider of Love (done)
 // -- videPlayer animation on scroll play with width and height not Scaling and custom cursor fix (done 2/2)
 // -- Primary btn animation more smooth (done)
+// -- Dashed svg animate in what we do section (done)
 
 // -- change position of companies marquee after first fold also marquee logos sizes consistent (done 1/2)
-// -- Dashed svg animate in what we do section ()
+
+// Things to do today 26 oct 2024
+// -- responsive of whole page check in every device ()
+// -- fix custom cursor bug (done)
+// -- slider of love bug (done)
