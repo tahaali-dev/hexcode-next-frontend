@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const VideoPlayer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const cursorRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -74,7 +75,7 @@ const VideoPlayer: React.FC = () => {
     let mouseX = 0,
       mouseY = 0;
 
-    const updateCursor = gsap.to(".custom-cursor", {
+    const updateCursor = gsap.to(cursorRef.current, {
       duration: 0.01,
       ease: "power3.out",
       repeat: -1,
@@ -82,7 +83,7 @@ const VideoPlayer: React.FC = () => {
         posX += (mouseX - posX) / 10;
         posY += (mouseY - posY) / 10;
 
-        gsap.set(".custom-cursor", {
+        gsap.set(cursorRef.current, {
           css: {
             left: posX - 1,
             top: posY - 2,
@@ -134,7 +135,7 @@ const VideoPlayer: React.FC = () => {
       </VideoPlayerWrapper>
 
       {isHovered && window.innerWidth > 768 && (
-        <CustomCursor className="custom-cursor">
+        <CustomCursor ref={cursorRef}>
           {isPlaying ? (
             <CursorText>Pause</CursorText>
           ) : (
@@ -154,10 +155,6 @@ const VideoPlayerWrapper = styled.div`
     border-radius: 16px;
     transform-origin: center;
     object-fit: initial;
-  }
-
-  &.hovered {
-    cursor: none;
   }
 
   .overlay {

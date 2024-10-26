@@ -11,6 +11,7 @@ import gsap from "gsap";
 // Main Slider Component
 const SliderOfLove = () => {
   const sliderRef: any = useRef(null); // Reference to slider container
+  const cursorRef: any = useRef(null); // Reference to slider container
   const [isDragging, setIsDragging] = useState(false); // Track dragging state
   const [startX, setStartX] = useState(0); // Track starting X position
   const [scrollLeft, setScrollLeft] = useState(0); // Track initial scroll position
@@ -33,7 +34,7 @@ const SliderOfLove = () => {
       mouseY = 0;
 
     // GSAP animation to smoothly follow cursor
-    const updateCursor = gsap.to(".custom-cursor", {
+    const updateCursor = gsap.to(cursorRef.current, {
       duration: 0.01,
       ease: "power3.out",
       repeat: -1,
@@ -41,7 +42,7 @@ const SliderOfLove = () => {
         posX += (mouseX - posX) / 10;
         posY += (mouseY - posY) / 10;
 
-        gsap.set(".custom-cursor", {
+        gsap.set(cursorRef.current, {
           css: { left: posX - 1, top: posY - 2 },
         });
       },
@@ -67,7 +68,7 @@ const SliderOfLove = () => {
       setIsDragging(true);
       setStartX(e.pageX - sliderRef.current.offsetLeft); // Track starting position
       setScrollLeft(sliderRef.current.scrollLeft); // Set initial scroll position
-      gsap.to(".custom-cursor", { scale: 1.5 }); // Scale cursor on grab
+      gsap.to(cursorRef.current, { scale: 1.5 }); // Scale cursor on grab
     }
   };
 
@@ -86,7 +87,7 @@ const SliderOfLove = () => {
   const handleMouseUpOrLeave = () => {
     if (window.innerWidth > 768) {
       setIsDragging(false);
-      gsap.to(".custom-cursor", { scale: 1 }); // Reset cursor size
+      gsap.to(cursorRef.current, { scale: 1 }); // Reset cursor size
     }
     const sliderWidth = sliderRef.current.offsetWidth;
     const scrollPos = sliderRef.current.scrollLeft;
@@ -129,7 +130,7 @@ const SliderOfLove = () => {
       >
         {/* Custom Cursor */}
         {showCursor && (
-          <CustomCursor className="custom-cursor">
+          <CustomCursor ref={cursorRef}>
             <CursorText>Scroll</CursorText>
           </CustomCursor>
         )}

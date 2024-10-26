@@ -49,7 +49,7 @@ const Homepage = () => {
       <EmptyContainer height="76px" />
       <FAQ />
       <Footer />
-      <div className="custom-cursor"></div>
+      {/* <div className="custom-cursor"></div> */}
     </>
   );
 };
