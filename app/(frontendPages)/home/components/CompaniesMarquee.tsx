@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import Marquee from "react-marquee-slider";
 import one from "../../../public/companies/uae.svg";
 import two from "../../../public/companies/MPL.svg";
-import three from "../../../public/companies/cuemath.svg";
-import four from "../../../public/companies/Rupeek.svg";
+// import three from "../../../public/companies/cuemath.svg";
+// import four from "../../../public/companies/Rupeek.svg";
 import five from "../../../public/companies/Micromax.svg";
-import six from "../../../public/companies/builder.svg";
+// import six from "../../../public/companies/builder.svg";
 import seven from "../../../public/companies/ayla.svg";
 import eight from "../../../public/companies/affinity.svg";
 import nine from "../../../public/companies/Volt.svg";
@@ -64,11 +64,11 @@ const CompaniesMarquee = () => {
             {[
               one,
               two,
-              three,
-              four,
+              // three,
+              // four,
               nine,
               five,
-              six,
+              // six,
               eleven,
               seven,
               eight,
