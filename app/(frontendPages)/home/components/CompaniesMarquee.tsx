@@ -2,29 +2,26 @@
 "use client";
 import { useState, useEffect } from "react";
 import Marquee from "react-marquee-slider";
-import one from "../../../public/companies/sensrtech.svg";
-import two from "../../../public/companies/Evenly.svg";
-import three from "../../../public/companies/affinity.svg";
-import four from "../../../public/companies/Builder.svg";
-import five from "../../../public/companies/MPL.svg";
-import six from "../../../public/companies/Micromax.svg";
-import seven from "../../../public/companies/Cuemath.svg";
-import eight from "../../../public/companies/rupeek.svg";
-import nine from "../../../public/companies/UE.svg";
-import ten from "../../../public/companies/microsoft.svg";
-import eleven from "../../../public/companies/Degreelabs.svg";
-import twelve from "../../../public/companies/Volt.svg";
-import thirteen from "../../../public/companies/uaechange.svg";
-import fourteen from "../../../public/companies/yocharge.svg";
-import fifteen from "../../../public/companies/tinker-village.svg";
-import sixteen from "../../../public/companies/Install iot.svg";
-import seventeen from "../../../public/companies/Clap.svg";
+import one from "../../../public/companies/uae.svg";
+import two from "../../../public/companies/MPL.svg";
+import three from "../../../public/companies/cuemath.svg";
+import four from "../../../public/companies/Rupeek.svg";
+import five from "../../../public/companies/Micromax.svg";
+import six from "../../../public/companies/builder.svg";
+import seven from "../../../public/companies/ayla.svg";
+import eight from "../../../public/companies/affinity.svg";
+import nine from "../../../public/companies/Volt.svg";
+import ten from "../../../public/companies/squadcast.svg";
+import eleven from "../../../public/companies/userexperior.svg";
+import twelve from "../../../public/companies/Cyanergy.svg";
+import thirteen from "../../../public/companies/tinker.svg";
 import styled from "@emotion/styled";
 import { DashedContainer, StyledImage } from "@/app/styledComps/containers";
 import { SectionTitle2 } from "@/app/styledComps/texts";
 
 const CompaniesMarquee = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   // UseEffect to ensure the `window` object is accessed only on the client
   useEffect(() => {
@@ -52,40 +49,38 @@ const CompaniesMarquee = () => {
       rightBottom={true}
       borderTopNone="none"
     >
-      <CompaniesWrapper>
-        <SectionTitle2>
+      <CompaniesWrapper
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        <SectionTitle2 className="m">
           Over the years, Collaborated with amazing brands
         </SectionTitle2>
 
         <div className="marquee-holder">
           <div className="gradient-left"></div>
 
-          <Marquee velocity={isMobile ? 8 : 25} direction={"rtl"}>
+          <Marquee velocity={hovered ? 0 : isMobile ? 8 : 25} direction={"rtl"}>
             {[
               one,
               two,
               three,
               four,
+              nine,
               five,
               six,
+              eleven,
               seven,
               eight,
-              nine,
               ten,
-              eleven,
               twelve,
               thirteen,
-              fourteen,
-              fifteen,
-              sixteen,
-              seventeen,
             ].map((imageSrc, index) => (
               <div className="logo-holder" key={index}>
                 <StyledImage
                   src={imageSrc}
-                  width="100"
-                  height="100"
                   alt={`icon-${index + 1}`}
+                  className="company-logo"
                 />
               </div>
             ))}
@@ -111,7 +106,7 @@ const CompaniesWrapper = styled.div`
   }
 
   .logo-holder {
-    margin: 0px 50px;
+    margin-left: 50px;
   }
 
   .gradient-left {
@@ -139,6 +134,16 @@ const CompaniesWrapper = styled.div`
       #fbf9f9 8.47%,
       rgba(251, 249, 249, 0) 100%
     );
+  }
+
+  .company-logo {
+    filter: grayscale(100%);
+    transition: 0.3s ease;
+  }
+
+  :hover .company-logo {
+    filter: none;
+    transition: 0.3s ease;
   }
 
   @media (max-width: 768px) {

@@ -34,9 +34,9 @@ const Homepage = () => {
 
   return (
     <>
-      {/* <Firstfold />
+      <Firstfold />
       <CompaniesMarquee />
-      <VideoPlayer />
+      {/* <VideoPlayer />
       <WhatWeDo />
       <EmptyContainer height="76px" />
       <Projects />
