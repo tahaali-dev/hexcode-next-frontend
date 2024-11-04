@@ -5,7 +5,7 @@ import Marquee from "react-marquee-slider";
 import one from "../../../public/companies/uae.svg";
 import two from "../../../public/companies/MPL.svg";
 import three from "../../../public/companies/cuemathLogo.svg";
-// import four from "../../../public/companies/Rupeek.svg";
+import four from "../../../public/companies/RupeekLogo.svg";
 import five from "../../../public/companies/Micromax.svg";
 // import six from "../../../public/companies/builder.svg";
 import seven from "../../../public/companies/ayla.svg";
@@ -65,7 +65,7 @@ const CompaniesMarquee = () => {
               one,
               two,
               three,
-              // four,
+              four,
               nine,
               five,
               // six,
