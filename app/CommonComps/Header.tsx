@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import Logo from "../public/basics/Logo.svg";
-import ProjectIcon from "../public/basics/projects.svg";
-import AboutIcon from "../public/basics/about.svg";
-import ServicesIcon from "../public/basics/services.svg";
-import ContactIcon from "../public/basics/contactus.svg";
+import ProjectIcon from "../public/homepage/navIconActive1.svg";
+import AboutIcon from "../public/homepage/navIconActive2.svg";
+import ServicesIcon from "../public/homepage/navIconActive3.svg";
+import ContactIcon from "../public/homepage/navIconActive4.svg";
 import FigmaIcon from "../public/basics/figma.svg";
 import HamburgerIcon from "../public/homepage/hamburgerIcon.svg";
 import { DashedContainer, StyledImage } from "../styledComps/containers";
@@ -106,7 +106,6 @@ const Header = () => {
 export default Header;
 
 // styles --
-
 const HeaderSticky = styled.section`
   position: sticky;
   top: 0;
@@ -129,5 +128,10 @@ const HeaderWrapper = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .nav-icon {
+    img {
+      filter: grayscale(100%);
+    }
   }
 `;

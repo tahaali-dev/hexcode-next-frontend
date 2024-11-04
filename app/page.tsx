@@ -34,7 +34,7 @@ const Homepage = () => {
 
   return (
     <>
-      <Firstfold />
+      {/* <Firstfold />
       <CompaniesMarquee />
       <VideoPlayer />
       <WhatWeDo />
@@ -48,7 +48,7 @@ const Homepage = () => {
       <Benefits />
       <EmptyContainer height="76px" />
       <FAQ />
-      <Footer />
+      <Footer /> */}
       <div className="custom-cursor"></div>
     </>
   );
