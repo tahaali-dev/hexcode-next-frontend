@@ -1,14 +1,15 @@
 "use client";
 import styled from "@emotion/styled";
-import curlyLine from "../../../public/basics/curlyline.svg";
-import DummyHexImg from "../../../public/basics/dummyheximage.svg";
-import ConsultingHexImg from "../../../public/homepage/consultingImage.svg";
+import WebAndProduct from "../../../public/homepage/WebsiteandProductHex.svg";
+import VisualIdentityHex from "../../../public/homepage/visualIdentity.png";
+import CreativeDev from "../../../public/homepage/CreativeDevHex.svg";
+import ConsultingHexImg from "../../../public/homepage/ConsultingHex.svg";
 import VIIcon from "../../../public/homepage/visualIdentity.svg";
 import WPIcon from "../../../public/homepage/websiteandproduct.svg";
 import CDIcon from "../../../public/homepage/creativedev.svg";
 import ConIcon from "../../../public/homepage/consulting.svg";
 import { useEffect, useRef, useState } from "react";
-import { DashedContainer, StyledImage } from "@/app/styledComps/containers";
+import { DashedContainer } from "@/app/styledComps/containers";
 import {
   HexSectionName,
   SectionSubHeading,
@@ -19,6 +20,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LottieAnimation from "@/app/utils/LottieAnimation";
 import ArrowLottie from "../../../public/basics/arrow.json";
+// Imports ----------
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -45,7 +47,7 @@ const WhatWeDo = () => {
       bgcolor: "#81D0FF",
       para1: para1Vis,
       para2: para2Vis,
-      image: DummyHexImg,
+      image: VisualIdentityHex,
       icon: VIIcon,
     },
     {
@@ -53,7 +55,7 @@ const WhatWeDo = () => {
       bgcolor: "#C3ABFF",
       para1: para1Web,
       para2: para2Web,
-      image: DummyHexImg,
+      image: WebAndProduct,
       icon: WPIcon,
     },
     {
@@ -61,7 +63,7 @@ const WhatWeDo = () => {
       bgcolor: "#FBC1D4",
       para1: para1Dev,
       para2: para2Dev,
-      image: DummyHexImg,
+      image: CreativeDev,
       icon: CDIcon,
     },
     {
@@ -182,7 +184,7 @@ const WhatwedoWrapper = styled.section`
     display: flex;
     flex-direction: column;
     gap: 56px;
-    padding: 42px 4px 4px 4px;
+    padding: 42px 4px 150px 4px;
     width: 100%;
   }
 
@@ -208,3 +210,24 @@ const LottieBox = styled.div`
   rotate: 180deg;
   width: 198px;
 `;
+
+// Desktop -------
+// 1920 x 1080
+// 1536 x 864
+// 1440 x 900
+// 1366 x 768
+// 1280 x 720
+
+// Tablet -------
+// 1280 x 800
+// 820 x 1180
+// 810 x 1080
+// 800 x 1280
+// 768 x 1024
+// 601 x 962
+
+// Mobile -------
+// 360 x 800
+// 390 x 844
+// 393 x 873
+// 412 x 915

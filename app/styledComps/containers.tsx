@@ -20,25 +20,20 @@ export const DashedContainer = ({
 }) => {
   return (
     <Container borderTopNone={borderTopNone}>
-      <div className="children-div">{children}</div>
-      {leftTop && (
-        <StyledImage
-          className="hex-left-top"
-          src={GreyHex}
-          width="16"
-          height="16"
-          alt="Hex Left Top"
-        />
-      )}
-      {leftBottom && (
-        <StyledImage
-          className="hex-left-bottom"
-          src={GreyHex}
-          width="16"
-          height="16"
-          alt="Hex Left Bottom"
-        />
-      )}
+      <div className="children-div">
+        {children}
+
+        {leftBottom && (
+          <StyledImage
+            className="hex-left-bottom"
+            src={GreyHex}
+            width="16"
+            height="16"
+            alt="Hex Left Bottom"
+          />
+        )}
+      </div>
+
       {rightTop && (
         <StyledImage
           className="hex-right-top"
@@ -110,37 +105,40 @@ export const Container = styled.section<{
     width: 100%;
   }
 
-  @media (min-width: 1441px) {
+  @media (max-width: 1920px) {
     .children-div {
-      margin-left: 12.5%;
-      margin-right: 12.5%;
-    }
-
-    .hex-left-top {
-      position: absolute;
-      top: -7px;
-      left: -8px;
-      z-index: 3;
+      margin-left: 14%;
+      margin-right: 14%;
     }
 
     .hex-left-bottom {
       position: absolute;
-      bottom: -7px;
-      left: 12%;
-      z-index: 1;
-    }
-
-    .hex-right-top {
-      position: absolute;
-      top: -7px;
-      right: -8px;
+      left: 13.6%;
       z-index: 1;
     }
 
     .hex-right-bottom {
       position: absolute;
-      bottom: -7px;
-      right: 12%;
+      right: 13.6%;
+      z-index: 1;
+    }
+  }
+
+  @media (max-width: 1440px) {
+    .children-div {
+      margin-left: 7%;
+      margin-right: 7%;
+      width: 100%;
+    }
+    .hex-left-bottom {
+      position: absolute;
+      left: 6.5%;
+      z-index: 1;
+    }
+
+    .hex-right-bottom {
+      position: absolute;
+      right: 6.5%;
       z-index: 1;
     }
   }

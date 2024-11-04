@@ -24,7 +24,7 @@ export const WhatWeDoCard = ({
   icon: string;
 }) => {
   return (
-    <WhatWeDoCardWrapper bgcolor={bgcolor}>
+    <WWDWrapper bgcolor={bgcolor}>
       <div className="left">
         <div className="d-flex g-md ">
           <StyledImage
@@ -37,8 +37,8 @@ export const WhatWeDoCard = ({
           <h4 className="card-heading">{title}</h4>
         </div>
 
-        <div className="para-box">
-          <p className="para-1">
+        <div className="content-box">
+          <p className="text-1">
             {para1.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
@@ -46,7 +46,7 @@ export const WhatWeDoCard = ({
               </span>
             ))}
           </p>
-          <p className="para-2">
+          <p className="text-2">
             {para2.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
@@ -58,26 +58,28 @@ export const WhatWeDoCard = ({
       </div>
 
       <div className="right m-none">
-        <StyledImage src={image} alt={`image`} />
+        <div className="half-color"></div>
+        <StyledImage src={image} alt={`image`} className="illustration" />
       </div>
-    </WhatWeDoCardWrapper>
+    </WWDWrapper>
   );
 };
 
 // Styles ----------------------------------------------------------------
-const WhatWeDoCardWrapper = styled.div<{ bgcolor: string }>`
-  min-width: 100%;
-  background-color: ${(prop) => (prop.bgcolor ? prop.bgcolor : "#fff")};
-  border-radius: 16px 0px 0px 16px;
-  clip-path: polygon(0 0, 89% 0, 100% 50%, 89% 100%, 0 100%, 0 0);
+const WWDWrapper = styled.div<{ bgcolor: string }>`
   display: flex;
   justify-content: space-between;
 
   .left {
+    width: 65%;
     padding: 32px;
     display: flex;
     flex-direction: column;
+    gap: 128px;
     justify-content: space-between;
+    border-radius: 16px 0px 0px 16px;
+    background-color: ${(prop) => (prop.bgcolor ? prop.bgcolor : "#fff")};
+
     .card-heading {
       color: var(--clr-dark);
       font-size: 54px;
@@ -86,16 +88,16 @@ const WhatWeDoCardWrapper = styled.div<{ bgcolor: string }>`
       text-transform: uppercase;
     }
 
-    .para-box {
+    .content-box {
       display: flex;
       gap: 80px;
-      .para-1 {
+      .text-1 {
         color: var(--clr-dark2);
         font-size: 18px;
         font-weight: 300;
         line-height: 24px;
       }
-      .para-2 {
+      .text-2 {
         color: var(--clr-dark);
         font-size: 18px;
         font-weight: 400;
@@ -105,35 +107,94 @@ const WhatWeDoCardWrapper = styled.div<{ bgcolor: string }>`
   }
 
   .right {
-    aspect-ratio: 1 / cos(30deg);
-    clip-path: polygon(50% -50%, 100% 50%, 50% 150%, 0 50%);
-  }
+    position: relative;
+    min-width: 515px;
+    // background-color: yellow;
 
-  /* Media queries for various resolutions */
-  @media (max-width: 768px) {
-    clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 0 0);
-    border-radius: 16px;
+    .half-color {
+      background-color: ${(prop) => (prop.bgcolor ? prop.bgcolor : "#fff")};
+      width: 50%;
+      margin-left: -2px;
+    }
 
-    .left {
-      padding: 16px;
-      .card-heading {
-        font-size: 32px !important;
-        font-weight: 400;
-        line-height: 42px;
-        margin-bottom: 16px !important;
-      }
-
-      .para-box {
-        flex-direction: column;
-        gap: 24px !important;
-        .para-1 {
-          font-size: 16px !important;
-          line-height: 24px;
-        }
-      }
+    .illustration {
+      position: absolute;
+      object-fit: contain;
     }
   }
 `;
+
+// const WhatWeDoCardWrapper = styled.div<{ bgcolor: string }>`
+//   min-width: 100%;
+//   background-color: ${(prop) => (prop.bgcolor ? prop.bgcolor : "#fff")};
+//   border-radius: 16px 0px 0px 16px;
+//   clip-path: polygon(0 0, 89% 0, 100% 50%, 89% 100%, 0 100%, 0 0);
+//   // clip-path: polygon(0 0, 89% 0, 100% 50%, 89% 100%, 0 100%, 0 0);
+
+//   display: flex;
+//   justify-content: space-between;
+
+//   .left {
+//     padding: 32px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     .card-heading {
+//       color: var(--clr-dark);
+//       font-size: 54px;
+//       font-weight: 400;
+//       line-height: 64px;
+//       text-transform: uppercase;
+//     }
+
+//     .para-box {
+//       display: flex;
+//       gap: 80px;
+//       .para-1 {
+//         color: var(--clr-dark2);
+//         font-size: 18px;
+//         font-weight: 300;
+//         line-height: 24px;
+//       }
+//       .para-2 {
+//         color: var(--clr-dark);
+//         font-size: 18px;
+//         font-weight: 400;
+//         line-height: 24px;
+//       }
+//     }
+//   }
+
+//   .right {
+//     aspect-ratio: 1 / cos(30deg);
+//     clip-path: polygon(50% -50%, 100% 50%, 50% 150%, 0 50%);
+//   }
+
+//   /* Media queries for various resolutions */
+//   @media (max-width: 768px) {
+//     clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 0 0);
+//     border-radius: 16px;
+
+//     .left {
+//       padding: 16px;
+//       .card-heading {
+//         font-size: 32px !important;
+//         font-weight: 400;
+//         line-height: 42px;
+//         margin-bottom: 16px !important;
+//       }
+
+//       .para-box {
+//         flex-direction: column;
+//         gap: 24px !important;
+//         .para-1 {
+//           font-size: 16px !important;
+//           line-height: 24px;
+//         }
+//       }
+//     }
+//   }
+// `;
 
 // Consulting card ----------------------------------
 export const ConsultingCard = ({
