@@ -122,79 +122,36 @@ const WWDWrapper = styled.div<{ bgcolor: string }>`
       object-fit: contain;
     }
   }
+
+  @media (max-width: 768px) {
+    .left {
+      padding: 16px;
+      width: 100%;
+      border-radius: 16px;
+      gap: 16px;
+
+      .card-heading {
+        font-size: 32px;
+        line-height: 42px;
+      }
+
+      .content-box {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        .text-1 {
+          font-size: 16px;
+          line-height: 24px;
+        }
+        .text-2 {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+        }
+      }
+    }
+  }
 `;
-
-// const WhatWeDoCardWrapper = styled.div<{ bgcolor: string }>`
-//   min-width: 100%;
-//   background-color: ${(prop) => (prop.bgcolor ? prop.bgcolor : "#fff")};
-//   border-radius: 16px 0px 0px 16px;
-//   clip-path: polygon(0 0, 89% 0, 100% 50%, 89% 100%, 0 100%, 0 0);
-//   // clip-path: polygon(0 0, 89% 0, 100% 50%, 89% 100%, 0 100%, 0 0);
-
-//   display: flex;
-//   justify-content: space-between;
-
-//   .left {
-//     padding: 32px;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-//     .card-heading {
-//       color: var(--clr-dark);
-//       font-size: 54px;
-//       font-weight: 400;
-//       line-height: 64px;
-//       text-transform: uppercase;
-//     }
-
-//     .para-box {
-//       display: flex;
-//       gap: 80px;
-//       .para-1 {
-//         color: var(--clr-dark2);
-//         font-size: 18px;
-//         font-weight: 300;
-//         line-height: 24px;
-//       }
-//       .para-2 {
-//         color: var(--clr-dark);
-//         font-size: 18px;
-//         font-weight: 400;
-//         line-height: 24px;
-//       }
-//     }
-//   }
-
-//   .right {
-//     aspect-ratio: 1 / cos(30deg);
-//     clip-path: polygon(50% -50%, 100% 50%, 50% 150%, 0 50%);
-//   }
-
-//   /* Media queries for various resolutions */
-//   @media (max-width: 768px) {
-//     clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 0 0);
-//     border-radius: 16px;
-
-//     .left {
-//       padding: 16px;
-//       .card-heading {
-//         font-size: 32px !important;
-//         font-weight: 400;
-//         line-height: 42px;
-//         margin-bottom: 16px !important;
-//       }
-
-//       .para-box {
-//         flex-direction: column;
-//         gap: 24px !important;
-//         .para-1 {
-//           font-size: 16px !important;
-//           line-height: 24px;
-//         }
-//       }
-//     }
-//   }
-// `;
 
 // Consulting card ----------------------------------
 export const ConsultingCard = ({
@@ -224,8 +181,8 @@ export const ConsultingCard = ({
           <h4 className="card-heading">{title}</h4>
         </div>
 
-        <div>
-          <p className="para-1">
+        <div className="content-box">
+          <p className="text-1">
             {para1.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
@@ -247,25 +204,26 @@ export const ConsultingCard = ({
       </div>
 
       <div className="right m-none">
-        <StyledImage src={image} alt={`image`} />
+        <div className="half-color"></div>
+        <StyledImage src={image} alt={`image`} className="illustration" />
       </div>
     </ConsultingCardWrapper>
   );
 };
 
 const ConsultingCardWrapper = styled.div<{ bgcolor: string }>`
-  min-width: 100%;
-  background-color: ${(prop) => (prop.bgcolor ? prop.bgcolor : "#fff")};
-  border-radius: 16px 0px 0px 16px;
-  clip-path: polygon(0 0, 89% 0, 100% 50%, 89% 100%, 0 100%, 0 0);
   display: flex;
   justify-content: space-between;
 
   .left {
+    width: 65%;
     padding: 32px;
     display: flex;
     flex-direction: column;
+    gap: 128px;
     justify-content: space-between;
+    border-radius: 16px 0px 0px 16px;
+    background-color: ${(prop) => (prop.bgcolor ? prop.bgcolor : "#fff")};
 
     .card-heading {
       color: var(--white-color);
@@ -275,38 +233,57 @@ const ConsultingCardWrapper = styled.div<{ bgcolor: string }>`
       text-transform: uppercase;
     }
 
-    .para-1 {
-      color: var(--white-color);
-      font-size: 18px;
-      font-weight: 300;
-      line-height: 24px;
+    .content-box {
+      .text-1 {
+        color: var(--white-color);
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 24px;
+      }
     }
   }
 
-  /* Media queries for various resolutions */
-  @media (max-width: 768px) {
-    clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 0 0);
-    border-radius: 16px;
+  .right {
+    position: relative;
+    min-width: 515px;
 
+    .half-color {
+      background-color: ${(prop) => (prop.bgcolor ? prop.bgcolor : "#fff")};
+      width: 50%;
+      margin-left: -2px;
+    }
+
+    .illustration {
+      position: absolute;
+      object-fit: contain;
+    }
+  }
+
+  @media (max-width: 768px) {
     .left {
       padding: 16px;
-
-      .w-full {
-        width: 100%;
-        margin-top: 32px;
-      }
+      width: 100%;
+      border-radius: 16px;
+      gap: 80px;
 
       .card-heading {
-        font-size: 32px !important;
-        font-weight: 400;
+        font-size: 32px;
         line-height: 42px;
-        margin-bottom: 16px !important;
       }
 
-      .para-1 {
-        font-size: 16px !important;
-        line-height: 24px;
-        margin-top: 68px;
+      .content-box {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        .text-1 {
+          font-size: 16px;
+          line-height: 24px;
+        }
+        .text-2 {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+        }
       }
     }
   }

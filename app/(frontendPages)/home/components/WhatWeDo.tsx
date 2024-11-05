@@ -39,7 +39,6 @@ const Consulting = `Our website design services blend innovation\nand creativity
 
 const WhatWeDo = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const lottieRef = useRef(null); // Create a ref for the Lottie animation
 
   const cardsData = [
     {
@@ -184,7 +183,7 @@ const WhatwedoWrapper = styled.section`
     display: flex;
     flex-direction: column;
     gap: 56px;
-    padding: 42px 4px 150px 4px;
+    padding: 24px 4px 150px 4px;
     width: 100%;
   }
 
@@ -201,7 +200,7 @@ const WhatwedoWrapper = styled.section`
 
     .cards-holder {
       gap: 24px;
-      padding: 32px 4px 4px 4px;
+      padding: 0px 4px 4px 4px;
     }
   }
 `;

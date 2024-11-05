@@ -36,11 +36,11 @@ const Homepage = () => {
     <>
       <Firstfold />
       <CompaniesMarquee />
-      {/* <VideoPlayer />
+      {/* <VideoPlayer /> */}
       <WhatWeDo />
-      <EmptyContainer height="76px" />
+      {/* <EmptyContainer height="76px" /> */}
       <Projects />
-      <EmptyContainer height="76px" />
+      {/* <EmptyContainer height="76px" />
       <SliderOfLove />
       <EmptyContainer height="76px" />
       <AboutUs />

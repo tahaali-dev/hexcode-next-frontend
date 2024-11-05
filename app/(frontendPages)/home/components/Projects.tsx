@@ -112,7 +112,6 @@ export default Projects;
 // styles --
 const ProjectsWrapper = styled.div`
   border-radius: 16px;
-  background: var(--white-color);
   padding: 80px 22px;
   text-align: center;
 
