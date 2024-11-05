@@ -247,15 +247,15 @@ const SliderLoveWrapper = styled.div`
   }
 
   @media (max-width: 1440px) {
-    max-width: 86vw;
+    max-width: 85vw;
     .overlay {
-      max-width: 86vw;
+      max-width: 85vw;
     }
   }
   @media (min-width: 1441px) {
-    max-width: 75vw;
+    max-width: 71vw;
     .overlay {
-      max-width: 75vw;
+      max-width: 71vw;
     }
   }
   @media (max-width: 1024px) {
@@ -265,9 +265,9 @@ const SliderLoveWrapper = styled.div`
     }
   }
   @media (max-width: 768px) {
-    max-width: 92vw;
+    max-width: 86vw;
     .overlay {
-      max-width: 92vw;
+      max-width: 86vw;
     }
   }
 `;
@@ -287,7 +287,7 @@ const SliderDotsWrapper = styled.div`
 const Dot = styled.div<{ active: boolean }>`
   width: 8px;
   height: 8px;
-  margin: 0px 6px;
+  margin: 0px 4px;
   border-radius: 50%;
   background-color: ${(props) =>
     props.active ? "var(--clr-primary)" : "var(--clr-light2)"};

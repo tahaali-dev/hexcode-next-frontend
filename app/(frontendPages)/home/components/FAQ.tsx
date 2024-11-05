@@ -41,6 +41,15 @@ const FAQ = () => {
         </p>
       ),
     },
+    {
+      title: "Can I get a refund?",
+      content: (
+        <p className="px-lg pb-lg color-02">
+          We have a satisfaction guarantee policy. If you are not satisfied,
+          please reach out to discuss possible solutions.
+        </p>
+      ),
+    },
   ];
 
   const [hasMounted, setHasMounted] = useState(false);
@@ -68,19 +77,9 @@ const FAQ = () => {
           asked questions
         </SectionTitle>
 
-        <div className=" d-flex align-end justify-between w-100 f-column">
-          <SectionSubHeading>
-            Still have questions? <u>Drop us a line</u>
-          </SectionSubHeading>
-
-          <PrimaryBtn
-            padding="16px"
-            fontSize="18px"
-            margin="0"
-            borderRadius="8px"
-            btnContent="book a call"
-          />
-        </div>
+        <SectionSubHeading className="mt-md">
+          Still have questions? <u>Drop us a line</u>
+        </SectionSubHeading>
       </FaqHeadingWrapper>
       <AccordionsWrapper>
         <ResponsiveMasonry
@@ -137,7 +136,7 @@ const AccordionsWrapper = styled.div`
   padding: 0px 64px 80px 64px;
 
   .color-02 {
-    color: var(--color-002);
+    color: var(--clr-dark2);
   }
 
   @media (max-width: 768px) {

@@ -115,7 +115,7 @@ const FirstFoldWrapper = styled.div`
 
   @media (max-width: 360px) {
     .main-heading {
-      font-size: 32px;
+      font-size: 28px;
       line-height: 42px;
     }
   }

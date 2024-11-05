@@ -191,7 +191,7 @@ export const ConsultingCard = ({
             ))}
           </p>
 
-          <div className="mt-lg">
+          <div className="mt-lg w-full">
             <PrimaryBtn
               padding="16px"
               fontSize="18px"
@@ -285,6 +285,10 @@ const ConsultingCardWrapper = styled.div<{ bgcolor: string }>`
           line-height: 24px;
         }
       }
+    }
+
+    .w-full {
+      width: 100%;
     }
   }
 `;
@@ -524,7 +528,7 @@ const Header = styled.div`
   justify-content: space-between;
 
   p {
-    color: var(--tertiary-color);
+    color: var(--clr-dark);
     font-size: 18px;
     font-weight: 600;
     line-height: 28px;
