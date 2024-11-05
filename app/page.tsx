@@ -36,11 +36,11 @@ const Homepage = () => {
     <>
       <Firstfold />
       <CompaniesMarquee />
-      {/* <VideoPlayer /> */}
+      <VideoPlayer />
       <WhatWeDo />
-      {/* <EmptyContainer height="76px" /> */}
+      <EmptyContainer height="76px" />
       <Projects />
-      {/* <EmptyContainer height="76px" />
+      <EmptyContainer height="76px" />
       <SliderOfLove />
       <EmptyContainer height="76px" />
       <AboutUs />
@@ -48,25 +48,10 @@ const Homepage = () => {
       <Benefits />
       <EmptyContainer height="76px" />
       <FAQ />
-      <Footer /> */}
+      <Footer />
       <div className="custom-cursor"></div>
     </>
   );
 };
 
 export default Homepage;
-
-// Things to do today 25 oct 2024
-// -- Header Scroll hide and show - when scroll up hide header when scroll down show header (done)
-// -- Highlighted text roll animation in first fold (done)
-// -- scroll cursor and scroll fix in The slider of Love (done)
-// -- videPlayer animation on scroll play with width and height not Scaling and custom cursor fix (done 2/2)
-// -- Primary btn animation more smooth (done)
-// -- Dashed svg animate in what we do section (done)
-
-// -- change position of companies marquee after first fold also marquee logos sizes consistent (done 1/2)
-
-// Things to do today 26 oct 2024
-// -- responsive of whole page check in every device ()
-// -- fix custom cursor bug (done)
-// -- slider of love bug (done)

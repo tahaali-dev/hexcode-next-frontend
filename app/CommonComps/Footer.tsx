@@ -148,7 +148,7 @@ export default Footer;
 // Styles -----------------------------------------------------------
 const FooterContainerDesktop = styled.div`
   background-color: var(--clr-dark);
-  padding: 40px;
+  padding: 40px 40px 80px 40px;
   border-radius: 16px 16px 0px 0px;
   display: flex;
   justify-content: space-between;
