@@ -44,6 +44,7 @@ const para2Dev = `Logotype, Typography & Colour\nIllustrations & 3D\nPhotography
 const Consulting = `Our website design services blend innovation\nand creativity to deliver user-centric solutions\nthat elevate your brand and engage your\naudience.`;
 
 const WhatWeDo = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const cardsData = [
@@ -126,6 +127,24 @@ const WhatWeDo = () => {
     }
   }, []);
 
+  // UseEffect to ensure the `window` object is accessed only on the client
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Set initial value for `isMobile`
+    handleResize();
+
+    // Listen for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <DashedContainer
       leftTop={false}
@@ -141,9 +160,8 @@ const WhatWeDo = () => {
           of what we do
         </SectionTitle>
         <SectionSubHeading className="mt-md text-lg">
-          Your go-to solution for web and mobile apps,{" "}
-          {window.innerWidth > 768 ? <br /> : ""}like many founders, startups,
-          and agencies do.
+          Your go-to solution for web and mobile apps, {!isMobile ? <br /> : ""}
+          like many founders, startups, and agencies do.
         </SectionSubHeading>
 
         <LottieBox className="lottie-box m-none">
