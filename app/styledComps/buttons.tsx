@@ -104,6 +104,13 @@ const ButtonWrapper = styled.button<{
     z-index: 1;
     position: relative;
   }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+  }
 `;
 
 const GradientContainer = styled.div<{

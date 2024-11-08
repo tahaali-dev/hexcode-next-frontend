@@ -69,7 +69,7 @@ const Firstfold = () => {
           <br /> <p className="mt-8">On‑Time. On‑Budget. On‑Point.</p>
         </SectionTitle>
 
-        <div className="d-flex align-center justify-center mt-xxl 2 g-lg btns-box">
+        <div className="d-flex align-center justify-center mt-xxl 2 g-lg m-mt-32">
           <PrimaryBtn
             padding="16px"
             fontSize="18px"
@@ -78,7 +78,7 @@ const Firstfold = () => {
             btnContent="Book a call"
           />
 
-          <TertiaryBtn padding="16px" fontSize="18px" className="w-full">
+          <TertiaryBtn padding="16px" fontSize="18px" className="w-full m-none">
             Our projects
           </TertiaryBtn>
         </div>
@@ -94,7 +94,7 @@ const FirstFoldWrapper = styled.div`
   padding: 80px 8px;
 
   @media (max-width: 768px) {
-    padding: 32px 8px;
+    padding: 52px 8px 32px 8px;
 
     .main-heading {
       font-size: 38px;
@@ -104,12 +104,8 @@ const FirstFoldWrapper = styled.div`
     .mt-8 {
       margin-top: -8px;
     }
-    .btns-box {
-      flex-direction: column;
-
-      .w-full {
-        width: 100%;
-      }
+    .w-full {
+      width: 100%;
     }
   }
 
@@ -117,6 +113,10 @@ const FirstFoldWrapper = styled.div`
     .main-heading {
       font-size: 28px;
       line-height: 42px;
+    }
+
+    .m-mt-32 {
+      margin-top: 32px !important;
     }
   }
 `;

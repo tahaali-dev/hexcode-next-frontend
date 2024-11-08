@@ -10,7 +10,7 @@ export const SectionTitle = styled.h1<{
   font-size: ${(prop) => prop.fontSize};
   line-height: ${(prop) => prop.lineHeight};
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   text-transform: uppercase;
 
   /* Apply styles for large screens (above 1024px) */

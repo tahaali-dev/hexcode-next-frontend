@@ -1,9 +1,15 @@
 "use client";
 import styled from "@emotion/styled";
-import WebAndProduct from "../../../public/homepage/WebsiteandProductHex.svg";
 import VisualIdentityHex from "../../../public/homepage/visualIdentity.png";
+import WebAndProduct from "../../../public/homepage/WebsiteandProductHex.svg";
 import CreativeDev from "../../../public/homepage/CreativeDevHex.svg";
 import ConsultingHexImg from "../../../public/homepage/ConsultingHex.svg";
+
+import VisualIdentityMobile from "../../../public/homepage/vIMobile.png";
+import WebAndProductMobile from "../../../public/homepage/wpMobile.png";
+import CreativeDevMobile from "../../../public/homepage/cdMobile.png";
+import ConsultingMobile from "../../../public/homepage/cnMobile.png";
+
 import VIIcon from "../../../public/homepage/visualIdentity.svg";
 import WPIcon from "../../../public/homepage/websiteandproduct.svg";
 import CDIcon from "../../../public/homepage/creativedev.svg";
@@ -48,6 +54,7 @@ const WhatWeDo = () => {
       para2: para2Vis,
       image: VisualIdentityHex,
       icon: VIIcon,
+      mobileImage: VisualIdentityMobile,
     },
     {
       title: "Website & Product",
@@ -56,6 +63,7 @@ const WhatWeDo = () => {
       para2: para2Web,
       image: WebAndProduct,
       icon: WPIcon,
+      mobileImage: WebAndProductMobile,
     },
     {
       title: "Creative Dev",
@@ -64,6 +72,7 @@ const WhatWeDo = () => {
       para2: para2Dev,
       image: CreativeDev,
       icon: CDIcon,
+      mobileImage: CreativeDevMobile,
     },
     {
       title: "Consulting",
@@ -72,6 +81,7 @@ const WhatWeDo = () => {
       para2: "",
       image: ConsultingHexImg,
       icon: ConIcon,
+      mobileImage: ConsultingMobile,
     },
   ];
 
@@ -80,17 +90,22 @@ const WhatWeDo = () => {
       const cards = gsap.utils.toArray(".whatwedo-card") as HTMLElement[];
       const spacer = window.innerWidth <= 768 ? 64 : 118;
 
-      if (cards.length > 0) {
+      if (cards.length > 0 && window.innerWidth > 768) {
         cards.forEach((card, index) => {
           ScrollTrigger.create({
             trigger: card,
-            start: `top-=${index * spacer} top+=15%`,
+            start: `top-=${index * spacer} ${
+              window.innerWidth > 768 ? "top+=15%" : "top+=8%"
+            }`,
+
             endTrigger: ".cards-holder",
-            end: `bottom top+=${500 + cards.length * spacer}`,
+            end: `bottom top+=99%`,
+
             pin: true,
             pinSpacing: false,
             id: `card-pin-${index}`,
             scrub: true,
+            // markers: true,
           });
         });
       }
@@ -126,11 +141,12 @@ const WhatWeDo = () => {
           of what we do
         </SectionTitle>
         <SectionSubHeading className="mt-md text-lg">
-          Your go-to solution for web and mobile apps, <br />
-          like many founders, startups, and agencies do.
+          Your go-to solution for web and mobile apps,{" "}
+          {window.innerWidth > 768 ? <br /> : ""}like many founders, startups,
+          and agencies do.
         </SectionSubHeading>
 
-        <LottieBox className="lottie-box">
+        <LottieBox className="lottie-box m-none">
           <LottieAnimation
             animationData={ArrowLottie}
             loop={false}
@@ -148,6 +164,7 @@ const WhatWeDo = () => {
                   para1={card.para1}
                   image={card.image}
                   icon={card.icon}
+                  mobileImage={card.mobileImage}
                 />
               </div>
             ) : (
@@ -159,6 +176,7 @@ const WhatWeDo = () => {
                   para2={card.para2}
                   image={card.image}
                   icon={card.icon}
+                  mobileImage={card.mobileImage}
                 />
               </div>
             )
@@ -183,7 +201,7 @@ const WhatwedoWrapper = styled.section`
     display: flex;
     flex-direction: column;
     gap: 56px;
-    padding: 24px 4px 150px 4px;
+    padding: 24px 4px 4px 4px;
     width: 100%;
   }
 
@@ -200,7 +218,7 @@ const WhatwedoWrapper = styled.section`
 
     .cards-holder {
       gap: 24px;
-      padding: 0px 4px 4px 4px;
+      padding: 32px 4px 4px 4px;
     }
   }
 `;

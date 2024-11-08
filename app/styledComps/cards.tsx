@@ -14,6 +14,7 @@ export const WhatWeDoCard = ({
   para1,
   para2,
   image,
+  mobileImage,
   icon,
 }: {
   title: string;
@@ -21,6 +22,7 @@ export const WhatWeDoCard = ({
   para1: string;
   para2: string;
   image: string;
+  mobileImage: any;
   icon: string;
 }) => {
   return (
@@ -54,6 +56,13 @@ export const WhatWeDoCard = ({
               </span>
             ))}
           </p>
+
+          {/* Mobile image */}
+          <StyledImage
+            src={mobileImage}
+            alt={`image`}
+            className="mobile-illustration d-none"
+          />
         </div>
       </div>
 
@@ -83,7 +92,7 @@ const WWDWrapper = styled.div<{ bgcolor: string }>`
     .card-heading {
       color: var(--clr-dark);
       font-size: 54px;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 64px;
       text-transform: uppercase;
     }
@@ -159,12 +168,14 @@ export const ConsultingCard = ({
   bgcolor,
   para1,
   image,
+  mobileImage,
   icon,
 }: {
   title: string;
   bgcolor: string;
   para1: string;
   image: string;
+  mobileImage: any;
   icon: string;
 }) => {
   return (
@@ -180,6 +191,13 @@ export const ConsultingCard = ({
           />
           <h4 className="card-heading">{title}</h4>
         </div>
+
+        {/* Mobile image */}
+        <StyledImage
+          src={mobileImage}
+          alt={`image`}
+          className="mobile-illustration d-none"
+        />
 
         <div className="content-box">
           <p className="text-1">
@@ -228,7 +246,7 @@ const ConsultingCardWrapper = styled.div<{ bgcolor: string }>`
     .card-heading {
       color: var(--white-color);
       font-size: 54px;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 64px;
       text-transform: uppercase;
     }
@@ -264,7 +282,7 @@ const ConsultingCardWrapper = styled.div<{ bgcolor: string }>`
       padding: 16px;
       width: 100%;
       border-radius: 16px;
-      gap: 80px;
+      gap: 24px;
 
       .card-heading {
         font-size: 32px;
