@@ -18,28 +18,11 @@ import thirteen from "../../../public/companies/tinker.svg";
 import styled from "@emotion/styled";
 import { DashedContainer, StyledImage } from "@/app/styledComps/containers";
 import { SectionTitle2 } from "@/app/styledComps/texts";
+import { useDeviceWidth } from "@/app/customHooks/commonHooks";
 
 const CompaniesMarquee = () => {
-  const [isMobile, setIsMobile] = useState(false);
   const [hovered, setHovered] = useState(false);
-
-  // UseEffect to ensure the `window` object is accessed only on the client
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    // Set initial value for `isMobile`
-    handleResize();
-
-    // Listen for window resize
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup event listener on unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const { isMobile } = useDeviceWidth();
 
   return (
     <DashedContainer

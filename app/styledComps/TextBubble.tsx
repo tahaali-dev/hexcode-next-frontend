@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import BubbleTail from "../public/homepage/bubbleTail.svg";
 import BubbleTailRed from "../public/homepage/bubbleTailRed.svg";
 import { StyledImage } from "./containers";
+import { useDeviceWidth } from "../customHooks/commonHooks";
 
 const ChatBubble = styled.div`
   border-radius: 16px;
@@ -28,12 +29,14 @@ const ChatBubble = styled.div`
 `;
 
 const Chat = ({ message }: any) => {
+  const { isMobile } = useDeviceWidth();
+
   return (
     <ChatBubble>
       <p className="to-me">{message}</p>
 
       <StyledImage
-        src={window.innerWidth > 786 ? BubbleTail : BubbleTailRed}
+        src={isMobile ? BubbleTailRed : BubbleTail}
         alt={`bubble-tail`}
         className="bubble-tail"
         width={32}
