@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
+import { gsap } from "gsap";
 
 export const useTestimonials = ({ clientData }: any) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -9,6 +10,7 @@ export const useTestimonials = ({ clientData }: any) => {
   const lenisRef = useRef<Lenis | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const testimonialsRef = useRef<HTMLDivElement | null>(null); // Ref to the component
+  const bubblesRef = useRef<HTMLDivElement[]>([]);
 
   // Use the custom hook for visibility tracking
   isVisible = useIntersectionObserver(testimonialsRef);
@@ -88,6 +90,29 @@ export const useTestimonials = ({ clientData }: any) => {
     };
   }, [isVisible, scrollOffset, clientData.length]);
 
+  // message bubble animation --
+  useEffect(() => {
+    if (!isVisible) return; // Don't start the timer if not visible
+
+    if (bubblesRef.current.length) {
+      // Clear previous animations
+      gsap.killTweensOf(bubblesRef.current);
+
+      // Animation
+      gsap.fromTo(
+        bubblesRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power2.out",
+          stagger: 1, // 1 second delay between animations
+        }
+      );
+    }
+  }, [clientData, activeIndex, isVisible]);
+
   // Handle card click
   const handleCardClick = (index: number) => {
     setActiveIndex(index);
@@ -97,6 +122,7 @@ export const useTestimonials = ({ clientData }: any) => {
   return {
     activeIndex,
     scrollRef,
+    bubblesRef,
     handleCardClick,
     testimonialsRef, // Return the ref to the component
   };

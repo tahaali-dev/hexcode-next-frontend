@@ -10,10 +10,15 @@ import Logo from "../../../public/companies/Volt.svg";
 import { useTestimonials } from "@/app/customHooks/testimonials";
 
 const Testimonials = () => {
-  const { activeIndex, scrollRef, handleCardClick, testimonialsRef } =
-    useTestimonials({
-      clientData,
-    });
+  const {
+    activeIndex,
+    scrollRef,
+    bubblesRef,
+    handleCardClick,
+    testimonialsRef,
+  } = useTestimonials({
+    clientData,
+  });
 
   return (
     <DashedContainer
@@ -92,7 +97,13 @@ const Testimonials = () => {
           {/* Chat Bubbles */}
           <div className="bubbles-container">
             {clientData[activeIndex].messages.map((msg: any, idx: number) => (
-              <Chat key={idx} message={msg.message} />
+              <div
+                key={idx}
+                className="bubble-wrapper"
+                ref={(el: any) => (bubblesRef.current[idx] = el!)}
+              >
+                <Chat message={msg.message} />
+              </div>
             ))}
           </div>
         </div>
