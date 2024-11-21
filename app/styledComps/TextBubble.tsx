@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import BubbleTail from "../public/homepage/bubbleTail.svg";
+import BubbleTailRed from "../public/homepage/bubbleTailRed.svg";
 import { StyledImage } from "./containers";
 
 const ChatBubble = styled.div`
   border-radius: 16px;
   background: var(--Black-black-200, #eae1e1);
-  // background: red;
   width: fit-content;
   padding: 8px 16px;
   position: relative;
@@ -19,6 +19,12 @@ const ChatBubble = styled.div`
     left: -10px;
     z-index: -1;
   }
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+    background: var(--clr-primary);
+    color: var(--white-color);
+  }
 `;
 
 const Chat = ({ message }: any) => {
@@ -27,7 +33,7 @@ const Chat = ({ message }: any) => {
       <p className="to-me">{message}</p>
 
       <StyledImage
-        src={BubbleTail}
+        src={window.innerWidth > 786 ? BubbleTail : BubbleTailRed}
         alt={`bubble-tail`}
         className="bubble-tail"
         width={32}

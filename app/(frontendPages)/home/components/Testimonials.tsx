@@ -56,7 +56,7 @@ const Testimonials = () => {
                   className="rounded-50"
                 />
               )}
-              <div className="d-flex flex-column">
+              <div className="d-flex flex-column m-none">
                 <h5 className="clr-dark text-lg text-w-600">{client.name}</h5>
                 <span className="clr-dark3 text-md">{client.description}</span>
               </div>
@@ -71,11 +71,11 @@ const Testimonials = () => {
               <StyledImage
                 src={clientData[activeIndex].clientImage}
                 alt={`project-banner`}
-                className="rounded-50"
+                className="rounded-50 m-none"
                 width={48}
                 height={48}
               />
-              <div className="d-flex flex-column">
+              <div className="d-flex flex-column ">
                 <h5 className="clr-dark text-lg text-w-400">
                   {clientData[activeIndex].name}
                 </h5>
@@ -153,6 +153,36 @@ const TestimonialsContainer = styled.div`
   .active-client-card {
     background-color: #fff1f1;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    background-color: transparent;
+
+    .clients {
+      width: 90vw;
+      background-color: transparent;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: row;
+      gap: 22px;
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .chat-box {
+      width: 100%;
+
+      .chat-box-header {
+        padding: 16px 24px;
+      }
+    }
+  }
+
+  .active-client-card {
+    background-color: transparent;
+  }
 `;
 
 const ClientCard = styled.div`
@@ -167,5 +197,9 @@ const ClientCard = styled.div`
   :hover {
     background-color: #fff1f1;
     transition: 0.3s ease all;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0px;
   }
 `;
