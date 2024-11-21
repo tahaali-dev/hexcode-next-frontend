@@ -64,7 +64,6 @@ export const Container = styled.section<{
   border-top: 1px dashed #d3d3d3;
   border-bottom: 1px dashed #d3d3d3;
   border-top: ${(prop) => (prop.borderTopNone ? prop.borderTopNone : "")};
-  background-color: var(--background-color);
   display: flex;
   justify-content: center;
   background-color: var(--clr-light);

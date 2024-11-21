@@ -13,6 +13,7 @@ import Footer from "./CommonComps/Footer";
 import EmptyContainer from "./styledComps/containers";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
+import Testimonials from "./(frontendPages)/home/components/Testimonials";
 // Imports ------
 
 const Homepage = () => {
@@ -41,7 +42,8 @@ const Homepage = () => {
       <EmptyContainer height="76px" />
       <Projects />
       <EmptyContainer height="76px" />
-      <SliderOfLove />
+      {/* <SliderOfLove /> */}
+      <Testimonials />
       <EmptyContainer height="76px" />
       <AboutUs />
       <EmptyContainer height="76px" />

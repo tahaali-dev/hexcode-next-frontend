@@ -128,6 +128,11 @@
   --spacing-xl: 32px;
   --spacing-xxl: 42px;
 
+  /* font weights */
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+
   /* Border Radius */
   --border-radius-xsm: 4px;
   --border-radius-md: 8px;
@@ -538,6 +543,14 @@ body {
   color: var(--grey-4e) !important;
 }
 
+.clr-dark {
+  color: var(--clr-dark);
+}
+
+.clr-dark3 {
+  color: var(--clr-dark3);
+}
+
 /* Indicator text */
 .text-success {
   color: var(--success-color);
@@ -620,6 +633,10 @@ body {
 }
 .rounded-lg {
   border-radius: var(--border-radius-lg);
+}
+
+.rounded-50 {
+  border-radius: 50%;
 }
 
 /* Transition */
@@ -752,32 +769,34 @@ body {
   }
 }
 
+.chatbox-bg {
+  background-image: url("./public/homepage/chatBoxbg.png");
+  background-size: cover; /* Ensures the image covers the area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents tiling */
+}
+
 /* Other classes */
 
 /* Webkit scroll disable */
-/* .scroll-none::-webkit-scrollbar {
+.scroll-none::-webkit-scrollbar {
   display: none;
-} */
+}
 
 /* custom scroll bar */
 /* width */
-/* .c-scroll::-webkit-scrollbar {
-  width: 8px;
-} */
+.c-scroll::-webkit-scrollbar {
+  width: 4px;
+}
 
 /* Track */
-/* .c-scroll::-webkit-scrollbar-track {
+.c-scroll::-webkit-scrollbar-track {
   background: var(--ed-light-color);
-} */
+}
 
 /* Handle */
-/* .c-scroll::-webkit-scrollbar-thumb {
-  background: var(--l9-light-color);
-  border-radius: 10px;
-  height: 100px;
-} */
-
-/* Handle on hover */
-/* .c-scroll::-webkit-scrollbar-thumb:hover {
-  background: #555;
-} */
+.c-scroll::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  /* height: 0px; */
+  background: #eae1e1;
+}
