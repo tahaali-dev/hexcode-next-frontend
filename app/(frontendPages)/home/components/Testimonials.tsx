@@ -2,11 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { DashedContainer, StyledImage } from "@/app/styledComps/containers";
 import { HexSectionName, SectionTitle } from "@/app/styledComps/texts";
 import styled from "@emotion/styled";
-import Lenis from "lenis";
 import clientData from "../../../utils/testimonials";
 import Chat from "@/app/styledComps/TextBubble";
 import ProfileRingTimer from "@/app/styledComps/ProfileTimerRing";
-import Logo from "../../../public/companies/Volt.svg";
+import Logo from "../../../public/homepage/voltLogo.svg";
 import { useTestimonials } from "@/app/customHooks/testimonials";
 
 const Testimonials = () => {
@@ -91,7 +90,12 @@ const Testimonials = () => {
                 </span>
               </div>
             </div>
-            <StyledImage src={Logo} alt={`project-banner`} width={100} />
+            <StyledImage
+              src={Logo}
+              alt={`project-banner`}
+              width={60}
+              height={24}
+            />
           </div>
 
           {/* Chat Bubbles */}
