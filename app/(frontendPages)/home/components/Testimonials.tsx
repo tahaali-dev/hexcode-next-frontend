@@ -24,15 +24,17 @@ const Testimonials = () => {
       borderTopNone="none"
     >
       {/* Heading Section */}
-      <SliderHeadingWrapper ref={testimonialsRef}>
-        <HexSectionName title="THE SLIDER OF LOVE" />
-        <SectionTitle fontSize="54px" lineHeight="64px" className="mt-lg">
-          Hear it from our partners
-        </SectionTitle>
-      </SliderHeadingWrapper>
+      <div>
+        <SliderHeadingWrapper>
+          <HexSectionName title="THE SLIDER OF LOVE" />
+          <SectionTitle fontSize="54px" lineHeight="64px" className="mt-lg">
+            Hear it from our partners
+          </SectionTitle>
+        </SliderHeadingWrapper>
+      </div>
 
       {/* Testimonial Section */}
-      <TestimonialsContainer>
+      <TestimonialsContainer ref={testimonialsRef}>
         {/* Clients Section */}
         <div className="clients c-scroll" ref={scrollRef}>
           {clientData.map((client: any, index: number) => (
@@ -178,10 +180,10 @@ const TestimonialsContainer = styled.div`
         padding: 16px 24px;
       }
     }
-  }
 
-  .active-client-card {
-    background-color: transparent;
+    .active-client-card {
+      background-color: transparent;
+    }
   }
 `;
 

@@ -42,27 +42,45 @@ export const useTestimonials = ({ clientData }: any) => {
     intervalRef.current = setInterval(() => {
       setActiveIndex((prevIndex) => {
         const nextIndex = (prevIndex + 1) % clientData.length;
-        setScrollOffset((prevOffset) => prevOffset + 100);
 
-        // scroll bottom 100px if index is > 3
-        if (nextIndex > 3 && scrollRef.current) {
-          const documentHeight = scrollRef.current.scrollHeight;
-          const windowHeight = scrollRef.current.clientHeight;
-          const targetPosition = Math.min(
-            documentHeight - windowHeight,
-            scrollOffset
-          );
-          lenisRef.current?.scrollTo(targetPosition);
-        }
+        if (window.innerWidth < 768) {
+          // Mobile devices: scroll horizontally
+          if (scrollRef.current) {
+            const newScrollLeft = scrollRef.current.scrollLeft + 50; // Scroll 50px to the right
+            scrollRef.current.scrollTo({
+              left: newScrollLeft,
+              behavior: "smooth",
+            });
+          }
 
-        if (nextIndex === 0 && scrollRef.current) {
-          lenisRef.current?.scrollTo(0);
+          if (nextIndex === 0 && scrollRef.current) {
+            scrollRef.current.scrollTo({
+              left: 0,
+              behavior: "smooth",
+            });
+          }
+        } else {
+          // Non-mobile devices: scroll vertically
+          setScrollOffset((prevOffset) => prevOffset + 100);
+
+          if (nextIndex > 3 && scrollRef.current) {
+            const documentHeight = scrollRef.current.scrollHeight;
+            const windowHeight = scrollRef.current.clientHeight;
+            const targetPosition = Math.min(
+              documentHeight - windowHeight,
+              scrollOffset
+            );
+            lenisRef.current?.scrollTo(targetPosition);
+          }
+
+          if (nextIndex === 0 && scrollRef.current) {
+            lenisRef.current?.scrollTo(0);
+          }
         }
 
         return nextIndex;
       });
     }, 10000);
-
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
