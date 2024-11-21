@@ -104,7 +104,7 @@ export const Container = styled.section<{
     width: 100%;
   }
 
-  @media (max-width: 1920px) {
+  @media (max-width: 2400px) {
     .children-div {
       margin-left: 14%;
       margin-right: 14%;
