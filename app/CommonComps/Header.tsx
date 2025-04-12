@@ -74,12 +74,23 @@ const Header = () => {
               </div> */}
             </div>
 
-            <div className="hamburger-holder d-none">
+            {/* <div className="hamburger-holder d-none">
               <StyledImage
                 src={HamburgerIcon}
                 alt="figma-icon"
                 width="20"
                 height="20"
+              />
+            </div> */}
+
+            <div className="d-none">
+              <PrimaryBtn
+                padding="12px 16px"
+                fontSize="16px"
+                margin="0"
+                borderRadius="8px"
+                btnContent="Lets's Talk"
+                onClick={() => setFormVisible(true)}
               />
             </div>
 

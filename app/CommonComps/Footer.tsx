@@ -48,7 +48,7 @@ const Footer = () => {
             <LightHeading className="text-Uppercase">Got an idea?</LightHeading>
 
             <div className="d-flex align-center g-md">
-              <AnchorLink>Get in touch</AnchorLink>
+              <AnchorLink href="https://calendly.com/shabbir-hexcode/30min" target="_blank">Get in touch</AnchorLink>
               <StyledImage
                 src={GetInTouchIcon}
                 width="32"
@@ -100,6 +100,7 @@ const Footer = () => {
                 margin="0"
                 borderRadius="8px"
                 btnContent="get in touch"
+                onClick={() => window.open("https://calendly.com/shabbir-hexcode/30min", "_blank")}
               />
             </div>
           </div>
