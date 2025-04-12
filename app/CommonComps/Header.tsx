@@ -19,9 +19,9 @@ import ContactForm from "./ContactModal";
 const Header = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState("up");
-    const [formVisible, setFormVisible] = useState(false);
+  const [formVisible, setFormVisible] = useState(false);
 
-    
+
 
   useEffect(() => {
     const handleScroll = () => {

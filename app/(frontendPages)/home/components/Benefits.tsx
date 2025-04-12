@@ -14,6 +14,8 @@ import {
 import { PrimaryBtn } from "@/app/styledComps/buttons";
 import { Benefitcard } from "@/app/styledComps/cards";
 import { DashedContainer } from "@/app/styledComps/containers";
+import ContactForm from "@/app/CommonComps/ContactModal";
+import { useState } from "react";
 // Import other icons as needed
 
 const benefitsData = [
@@ -56,6 +58,9 @@ const benefitsData = [
 ];
 
 const Benefits = () => {
+  const [formVisible, setFormVisible] = useState(false);
+
+
   return (
     <DashedContainer
       leftTop={false}
@@ -74,7 +79,7 @@ const Benefits = () => {
           the benefits.
         </SectionSubHeading>
 
-        <div className="mt-lg">
+        {/* <div className="mt-lg">
           <PrimaryBtn
             padding="16px"
             fontSize="18px"
@@ -82,7 +87,7 @@ const Benefits = () => {
             borderRadius="8px"
             btnContent="Get start today"
           />
-        </div>
+        </div> */}
 
         <BenefitsCardHolder>
           {benefitsData.map((benefit, index) => (
@@ -95,6 +100,9 @@ const Benefits = () => {
           ))}
         </BenefitsCardHolder>
       </BenefitsWrapper>
+
+      <ContactForm show={formVisible} onClose={() => setFormVisible(false)} />
+
     </DashedContainer>
   );
 };

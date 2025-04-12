@@ -55,41 +55,31 @@ const Projects = () => {
           >
             <Masonry columnsCount={2} className="gap-64">
               <ProjectCard
-                projectName="Qurfy"
-                projectDetails="Redesigning new app for discovering barber and beauty professionals."
+                projectName="Volt"
+                projectDetails="Building the most trusted platform for instant loans against mutual funds and stocks."
                 banner={PR1}
               />
               <ProjectCard
-                projectName="User Experior"
-                projectDetails="Redesigning new app for discovering barber and beauty professionals."
-                banner={PR4}
-              />
-
-              <ProjectCard
-                projectName="Sensyrtech"
-                projectDetails="Redesigning new app for discovering barber and beauty professionals."
-                banner={PR3}
-              />
-              <ProjectCard
-                projectName="Volt"
-                projectDetails="Redesigning new app for discovering barber and beauty professionals."
-                banner={PR5}
-              />
-              <ProjectCard
-                projectName="Delve"
-                projectDetails="Redesigning new app for discovering barber and beauty professionals."
+                projectName="ABC Studios"
+                projectDetails="Designing a studio website showcasing talent and stories through artist management and premium productions."
                 banner={PR2}
               />
 
               <ProjectCard
-                projectName="Install IoT"
-                projectDetails="Redesigning new app for discovering barber and beauty professionals."
-                banner={PR6}
+                projectName="Delve"
+                projectDetails="Creating a modern website for a Y Combinator–backed AI tool simplifying compliance for fast-growing teams."
+                banner={PR3}
               />
-                <ProjectCard
-                projectName="StarBrite"
-                projectDetails="Redesigning new app for discovering barber and beauty professionals."
-                banner={PR6}
+
+              <ProjectCard
+                projectName="Install IoT"
+                projectDetails="Designing a website that connects businesses with expert IoT professionals for installation, support, and scalable growth."
+                banner={PR4}
+              />
+              <ProjectCard
+                projectName="Starbrite Dental"
+                projectDetails="Branding a leading dental clinic with over 19 years of trusted, high-quality care."
+                banner={PR5}
               />
             </Masonry>
           </ResponsiveMasonry>

@@ -39,7 +39,7 @@ const AboutUs = () => {
               digital experiences customers love.
             </SectionSubHeading>
 
-            <div className="mt-lg">
+            {/* <div className="mt-lg">
               <PrimaryBtn
                 padding="16px"
                 fontSize="18px"
@@ -47,7 +47,7 @@ const AboutUs = () => {
                 borderRadius="8px"
                 btnContent="About us"
               />
-            </div>
+            </div> */}
           </div>
           <StyledImage
             src={aboutUsHexagons}
