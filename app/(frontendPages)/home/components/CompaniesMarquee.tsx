@@ -15,6 +15,12 @@ import ten from "../../../public/companies/squadcast.svg";
 import eleven from "../../../public/companies/userexperior.svg";
 import twelve from "../../../public/companies/Cyanergy.svg";
 import thirteen from "../../../public/companies/tinker.svg";
+import fourteen from "../../../public/companies/abc.svg";
+import fifteen from "../../../public/companies/starbrite.svg";
+import sixteen from "../../../public/companies/delve.svg";
+import seventeen from "../../../public/companies/biotale.svg";
+import eighteen from "../../../public/companies/robylon-logo.svg";
+
 import styled from "@emotion/styled";
 import { DashedContainer, StyledImage } from "@/app/styledComps/containers";
 import { SectionTitle2 } from "@/app/styledComps/texts";
@@ -56,6 +62,11 @@ const CompaniesMarquee = () => {
               ten,
               twelve,
               thirteen,
+              fourteen,
+              fifteen,
+              sixteen,
+              seventeen,
+              eighteen,
             ].map((imageSrc, index) => (
               <div className="logo-holder" key={index}>
                 <StyledImage
@@ -88,6 +99,9 @@ const CompaniesWrapper = styled.div`
 
   .logo-holder {
     margin-left: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .gradient-left {
