@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AboutUs from "./(frontendPages)/home/components/AboutUs";
 import Benefits from "./(frontendPages)/home/components/Benefits";
 import CompaniesMarquee from "./(frontendPages)/home/components/CompaniesMarquee";
@@ -14,9 +14,13 @@ import EmptyContainer from "./styledComps/containers";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import Testimonials from "./(frontendPages)/home/components/Testimonials";
+import ContactForm from "./CommonComps/ContactModal";
 // Imports ------
 
 const Homepage = () => {
+
+  const [formVisible, setFormVisible] = useState(false);
+
   useEffect(() => {
     // Initialize Lenis
     const lenis = new Lenis();
@@ -33,8 +37,10 @@ const Homepage = () => {
     requestAnimationFrame(raf);
   }, []);
 
+  // onClick={() => setFormVisible(true)}
+
   return (
-    <>
+    <div id="body-scroll">
       <Firstfold />
       <CompaniesMarquee />
       <VideoPlayer />
@@ -52,7 +58,9 @@ const Homepage = () => {
       <FAQ />
       <Footer />
       <div className="custom-cursor"></div>
-    </>
+
+      <ContactForm show={formVisible} onClose={() => setFormVisible(false)} />
+    </div>
   );
 };
 

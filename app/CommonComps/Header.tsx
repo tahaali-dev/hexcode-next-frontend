@@ -13,11 +13,15 @@ import { DashedContainer, StyledImage } from "../styledComps/containers";
 import { NavLink } from "../styledComps/Links";
 import { PrimaryBtn, SecondaryBtn } from "../styledComps/buttons";
 import gsap from "gsap";
+import ContactForm from "./ContactModal";
 // Imports --------------------------------------------------------------
 
 const Header = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState("up");
+    const [formVisible, setFormVisible] = useState(false);
+
+    
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,11 +98,14 @@ const Header = () => {
                 margin="0"
                 borderRadius="8px"
                 btnContent="Lets's Talk"
+                onClick={() => setFormVisible(true)}
               />
             </div>
           </div>
         </HeaderWrapper>
       </DashedContainer>
+
+      <ContactForm show={formVisible} onClose={() => setFormVisible(false)} />
     </HeaderSticky>
   );
 };

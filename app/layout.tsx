@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { useEffect } from "react";
 import styled from "@emotion/styled";
 import gsap from "gsap";
+import ContactForm from "./CommonComps/ContactModal";
 
 const metadata: Metadata = {
   title: "Hexcode",
@@ -68,6 +69,7 @@ export default function RootLayout({
         <Analytics />
 
         <CustomCursor id="custom-cursor"></CustomCursor>
+
       </body>
     </html>
   );
