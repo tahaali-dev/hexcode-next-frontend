@@ -39,13 +39,14 @@ const Projects = () => {
     >
       <div className="p-xs">
         <ProjectsWrapper>
-          <HexSectionName title="Projects" />
+          <HexSectionName title="Our Portfolio" />
           <SectionTitle fontSize="54px" lineHeight="64px" className="mt-lg">
-            Selected work
+            Featured Projects
           </SectionTitle>
           <SectionSubHeading className="mt-md">
-            Whether it's a vibrant website or a minimal mobile app you seek.{" "}
-            <br /> We deliver exceptional quality for all.
+            Work We're Proud to Showcase
+            {/* Whether it's a vibrant website or a minimal mobile app you seek.{" "}
+            <br /> We deliver exceptional quality for all. */}
           </SectionSubHeading>
 
           <ResponsiveMasonry

@@ -47,10 +47,18 @@ const Firstfold = () => {
     >
       <FirstFoldWrapper>
         <SectionTitle2 className="mb-lg">
-          It's Hexcode, Your product design partner!
+          We’re HEXCODE – Your UX design and development Partner
         </SectionTitle2>
 
         <SectionTitle
+          fontSize="64px"
+          lineHeight="74px"
+          className="main-heading "
+        >
+          We help people build <br /> impactful brands
+        </SectionTitle>
+
+        {/* <SectionTitle
           fontSize="64px"
           lineHeight="74px"
           className="main-heading "
@@ -67,7 +75,7 @@ const Firstfold = () => {
             </div>
           </RollingTextWrapper>
           <br /> <p className="mt-8">On‑Time. On‑Budget. On‑Point.</p>
-        </SectionTitle>
+        </SectionTitle> */}
 
         <div className="d-flex align-center justify-center mt-xxl 2 g-lg m-mt-32">
           <PrimaryBtn

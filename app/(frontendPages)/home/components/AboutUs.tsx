@@ -24,18 +24,19 @@ const AboutUs = () => {
         <AboutUsWrapper>
           <div className="mx-lg">
             <div className="mt-64">
-              <HexSectionName title="About us" />
+              <HexSectionName title="About Hexcode" />
             </div>
             <SectionTitle
               fontSize="54px"
               lineHeight="64px"
               className="mt-lg text-white"
             >
-              Great work for great ☻ people
+              Building Experiences That Matter
             </SectionTitle>
             <SectionSubHeading className="mt-md text-white">
-              We put people first, understanding that a well-crafted product
-              significantly <br /> impacts the lives of those who use it.
+              We are a product strategy and design agency dedicated to creating{" "}
+              <br />
+              digital experiences customers love.
             </SectionSubHeading>
 
             <div className="mt-lg">

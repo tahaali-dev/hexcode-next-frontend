@@ -30,9 +30,9 @@ const Testimonials = () => {
       {/* Heading Section */}
       <div>
         <SliderHeadingWrapper>
-          <HexSectionName title="THE SLIDER OF LOVE" />
+          <HexSectionName title="Testimonials" />
           <SectionTitle fontSize="54px" lineHeight="64px" className="mt-lg">
-            Hear it from our partners
+            Words from our partners
           </SectionTitle>
         </SliderHeadingWrapper>
       </div>

@@ -36,9 +36,7 @@ const CompaniesMarquee = () => {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <SectionTitle2 className="m">
-          Over the years, Collaborated with amazing brands
-        </SectionTitle2>
+        <SectionTitle2 className="m">Our Partners</SectionTitle2>
 
         <div className="marquee-holder">
           <div className="gradient-left"></div>

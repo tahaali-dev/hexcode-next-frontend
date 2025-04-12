@@ -19,35 +19,39 @@ import { DashedContainer } from "@/app/styledComps/containers";
 const benefitsData = [
   {
     icon: UnlimitedIcon,
-    title: "Unlimited requests",
-    subtitle: "Unlimited task requests, prioritized \n as you like.",
+    title: "Unlimited Requests",
+    subtitle:
+      "Request as many tasks as you need, with priority given to what matters most.",
   },
   {
     icon: FastIcon,
-    title: "Fast turnaround",
-    subtitle: "Tasks delivered in just 2-3 working \n business days.",
+    title: "Quick Turnaround",
+    subtitle: "Receive completed tasks in just 2-3 business days.",
   },
   {
     icon: CommunicationIcon,
-    title: "Easy communication",
-    subtitle: "Communicate via Slack for instant updates.",
+    title: "Seamless Communication",
+    subtitle:
+      "Stay updated instantly through Slack for easy, direct communication.",
   },
   {
     icon: ContractsIcon,
-    title: "No contracts",
-    subtitle: "No contracts. Stay if you love it, \n leave when you want!",
+    title: "No Contracts",
+    subtitle:
+      "Enjoy flexibility—stay as long as you like, with no long-term commitments.",
   },
   {
     icon: TeamIcon,
-    title: "Your entire team",
-    subtitle: "Busy? Invite your team to manage \n tasks together.",
+    title: "Collaborative Teamwork",
+    subtitle:
+      "Invite your team to manage tasks together, even when you're busy.",
   },
 
   {
     icon: CostsIcon,
-    title: "No extra costs",
+    title: "Transparent Pricing",
     subtitle:
-      "Enjoy a fixed monthly rate with no \n surprises, just transparency.",
+      "Enjoy a fixed monthly rate with no hidden fees—just complete transparency.",
   },
 ];
 
@@ -61,13 +65,13 @@ const Benefits = () => {
       borderTopNone="none"
     >
       <BenefitsWrapper>
-        <HexSectionName title="Benefits of subscriptions" />
+        <HexSectionName title="Subscription" />
         <SectionTitle fontSize="54px" lineHeight="64px" className="mt-lg">
-          Get world-class <br /> designs, faster
+          Great Designs, <br /> Done Quickly
         </SectionTitle>
         <SectionSubHeading className="mt-md text-lg">
-          Get all our design services for a fixed monthly fee. <br />
-          Enjoy all the benefits.
+          Get all our design services for a fixed monthly fee. <br /> Enjoy all
+          the benefits.
         </SectionSubHeading>
 
         <div className="mt-lg">

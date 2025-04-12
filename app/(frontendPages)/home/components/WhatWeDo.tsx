@@ -32,14 +32,16 @@ import ArrowLottie from "../../../public/basics/arrow.json";
 gsap.registerPlugin(ScrollTrigger);
 
 // imports  ------------------------------------------------------------------------------------------------
-const para1Vis = `Visual identity is the unique visual\nlanguage of your brand, creating\nmemorable impressions and\nemotional connections with your\naudience.`;
-const para2Vis = `Logotype, Typography & Colour\nIllustrations & 3D\nPhotography Art Direction\nBrand Book & Guidelines\nAnimations\nVideo Production\nProduct Design`;
+const para1Vis = `Crafting memorable impressions and emotional \n connections with your audience that embarks your \n digital presence. `;
+const para2Vis = `Logo Design\nBrand Color Palette & Typography Selection\nVisual Style GuidelinesBrand Collateral\nSocial Media Branding\nPackaging Design\nBrand Style Guide`;
 
-const para1Web = `Our website design services\nblend innovation and creativity to\ndeliver user-centric solutions\nthat elevate your brand and\nengage your audience.`;
-const para2Web = `UX Design\nUser Testing\nProduct Prototype\nMobile UI\nSotware UI design\nWeb app design\nInteraction design`;
+const para1Web = `Creating intuitive and \n aesthetically  pleasing websites \n & products around  user-centric solutions that elevate\n your brand and engage your audience.`;
+const para2Web = `User Research & Analysis\nWireframing & Mockups\nInteractive Prototyping\nDesign System\nMobile App Design (iOS & Android)\nResponsive Design`;
 
-const para1Dev = `Visual identity is the unique visual\nlanguage of your brand, creating\nmemorable impressions and\nemotional connections with your\naudience.`;
-const para2Dev = `Logotype, Typography & Colour\nIllustrations & 3D\nPhotography Art Direction\nBrand Book & Guidelines\nAnimations\nVideo Production\nProduct Design`;
+const para1Dev = `Bringing designs in actual existence by leveraging the \n latest technologies to develop robust and scalable \n solutions.`;
+const para2Dev = `Full-Stack Development\nE-Commerce Development\nSaaS Development
+No-Code Development
+Website Development`;
 
 const Consulting = `Our website design services blend innovation\nand creativity to deliver user-centric solutions\nthat elevate your brand and engage your\naudience.`;
 
@@ -154,14 +156,14 @@ const WhatWeDo = () => {
       borderTopNone="none"
     >
       <WhatwedoWrapper>
-        <HexSectionName title="What do we do" />
+        <HexSectionName title="Our Capabilities" />
         <SectionTitle fontSize="54px" lineHeight="64px" className="mt-lg">
-          A breakdown <br />
-          of what we do
+          Overview of <br /> our services
         </SectionTitle>
         <SectionSubHeading className="mt-md text-lg">
-          Your go-to solution for web and mobile apps, {!isMobile ? <br /> : ""}
-          like many founders, startups, and agencies do.
+          Your All-in-One Partner for Digital Excellence
+          {/* Your go-to solution for web and mobile apps, {!isMobile ? <br /> : ""}
+          like many founders, startups, and agencies do. */}
         </SectionSubHeading>
 
         <LottieBox className="lottie-box m-none">
