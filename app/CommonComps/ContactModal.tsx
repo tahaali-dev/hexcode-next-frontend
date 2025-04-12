@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { StyledImage } from '../styledComps/containers';
 import closeIcon from "../public/Icons/close.svg"
+import axios from 'axios';
 
 const Overlay = styled.div<{ show: boolean }>`
   position: fixed;
@@ -10,13 +11,14 @@ const Overlay = styled.div<{ show: boolean }>`
   left: 0;
   height: 100dvh;
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
   z-index: 1000;
+  background: rgba(0, 0, 0, 0.3);
   opacity: ${({ show }) => (show ? 1 : 0)};
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
-  transition: opacity 0.6s ease, visibility 0.6s ease;
+  filter: ${({ show }) => (show ? 'blur(1.5px)' : 'blur(0px)')};
+  transition: opacity 0.6s ease, visibility 0.6s ease, filter 0.6s ease;
+  filter : blur(1px);
 `;
-
 
 const SlideInContainer = styled.div<{ show: boolean }>`
   position: fixed;
@@ -187,97 +189,144 @@ margin-top: 16px;
 const tags = ['Brand Strategy', 'Identity', 'Website', 'Product design', 'Other'];
 
 export default function ContactForm({ show, onClose }: { show: boolean; onClose: () => void }) {
- const [selectedTag, setSelectedTag] = useState<string | null>(null);
- const [name, setName] = useState('');
- const [other, setOther] = useState('');
- const [message, setMessage] = useState('');
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [name, setName] = useState('');
+  const [other, setOther] = useState('');
+  const [message, setMessage] = useState('');
 
- useEffect(() => {
-  const target = document.getElementById('body-scroll');
+  useEffect(() => {
+    const target = document.getElementById('body-scroll');
+    const overlayvid = document.querySelector('.overlay') as HTMLElement | null;
 
-  if (target) {
-   if (show) {
-    target.style.overflow = 'hidden';
-    target.style.maxHeight = '92dvh';
-   } else {
-    target.style.overflow = '';
-    target.style.maxHeight = '';
-   }
-  }
+    if (target) {
+      if (show) {
+        target.style.overflow = 'hidden';
+        target.style.maxHeight = '92dvh';
+        if (overlayvid) overlayvid.style.display = 'none';
+      } else {
+        target.style.overflow = '';
+        target.style.maxHeight = '';
+        if (overlayvid) overlayvid.style.display = '';
+      }
+    }
 
-  // Cleanup when unmounting or when show becomes false
-  return () => {
-   if (target) {
-    target.style.overflow = '';
-    target.style.maxHeight = '';
-   }
+    return () => {
+      if (target) {
+        target.style.overflow = '';
+        target.style.maxHeight = '';
+      }
+      if (overlayvid) {
+        overlayvid.style.display = '';
+      }
+    };
+  }, [show]);
+
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData();
+    formData.append('Name', name);
+    formData.append('Category', selectedTag || '');
+    formData.append('Email', other);
+    formData.append('Message', message);
+
+    try {
+      await axios.post(
+        'https://script.google.com/macros/s/AKfycbx1hKmgpa-HbyU9HuN-N7JulqsvA9Eb1fnAQuajoU_Sof8MqlwRa4PYOMeuWvSQDyLi/exec',
+        formData
+      );
+      console.log("Form submitted!");
+      setIsSubmitted(true);
+      setName('');
+      setOther('');
+      setMessage('');
+      setSelectedTag(null);
+    } catch (error) {
+      console.error("Form submission error:", error);
+      // Optional: Add error handling UI
+    } finally {
+      setIsSubmitting(false);
+    }
   };
- }, [show]);
 
- const handleSubmit = () => {
-  console.log({ selectedTag, name, other, message });
-  // Add form submission logic here
-  onClose();
- };
+  return (
+    <>
+      {show && <Overlay show={show} onClick={onClose} />}
+      <SlideInContainer show={show}>
+        <div className='d-flex justify-between align-center'>
+          <Title>LET’S TALK</Title>
+          <div onClick={onClose} className='pointer'>
+            <StyledImage
+              src={closeIcon}
+              alt="figma-icon"
+              width="20"
+              height="20"
+            />
+          </div>
+        </div>
 
- return (
-  <>
-   {show && <Overlay show={show} onClick={onClose} />}
-   <SlideInContainer show={show}>
+        {isSubmitted ? (
+          <div style={{ marginTop: '2rem' }}>
+            <h3 style={{ fontSize: '24px', fontWeight: '400', color: '#181010' }}>Thank you!</h3>
+            <p style={{ fontSize: '18px', color: '#352727', marginTop: '8px' }}>
+              Your message has been received. We’ll be in touch soon.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <SectionTitle>What can we do for you?</SectionTitle>
+            <Tags>
+              {tags.map((tag) => (
+                <TagButton
+                  key={tag}
+                  selected={selectedTag === tag}
+                  type="button"
+                  onClick={() => setSelectedTag(tag)}
+                >
+                  {tag}
+                </TagButton>
+              ))}
+            </Tags>
 
-    <div className='d-flex justify-between align-center'>
-     <Title>LET’S TALK</Title>
+            <SectionTitle>Your information</SectionTitle>
+            <GridForTwo>
+              <Input
+                name="Name"
+                placeholder="Your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <Input
+                name="Email"
+                type="email"
+                placeholder="Your email"
+                value={other}
+                onChange={(e) => setOther(e.target.value)}
+                required
+              />
+            </GridForTwo>
+            <TextArea
+              name="Message"
+              placeholder="Sell your dream!"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <div className='d-flex justify-end'>
+              <SubmitButton type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'SUBMIT'}
+              </SubmitButton>
+            </div>
+          </form>
+        )}
 
-     <div onClick={onClose} className='pointer'>
-      <StyledImage
-       src={closeIcon}
-       alt="figma-icon"
-       width="20"
-       height="20"
-      />
-     </div>
-
-    </div>
-
-
-
-
-    <SectionTitle>What can we do for you?</SectionTitle>
-    <Tags>
-     {tags.map((tag) => (
-      <TagButton
-       key={tag}
-       selected={selectedTag === tag}
-       onClick={() => setSelectedTag(tag)}
-      >
-       {tag}
-      </TagButton>
-     ))}
-    </Tags>
-
-    <SectionTitle>Your information</SectionTitle>
-    <GridForTwo>
-     <Input
-      placeholder="Your name"
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-     />
-     <Input
-      placeholder="Other"
-      value={other}
-      onChange={(e) => setOther(e.target.value)}
-     />
-    </GridForTwo>
-    <TextArea
-     placeholder="Sell your dream!"
-     value={message}
-     onChange={(e) => setMessage(e.target.value)}
-    />
-
-    <div className='d-flex justify-end'>
-     <SubmitButton onClick={handleSubmit}>SUBMIT</SubmitButton>
-    </div>
-   </SlideInContainer>
-  </>
- );
+      </SlideInContainer>
+    </>
+  );
 }
