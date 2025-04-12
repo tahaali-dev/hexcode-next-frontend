@@ -12,7 +12,7 @@ const Overlay = styled.div<{ show: boolean }>`
   height: 100dvh;
   width: 100%;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.6);
   opacity: ${({ show }) => (show ? 1 : 0)};
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   filter: ${({ show }) => (show ? 'blur(1.5px)' : 'blur(0px)')};
@@ -22,7 +22,7 @@ const Overlay = styled.div<{ show: boolean }>`
 
 const SlideInContainer = styled.div<{ show: boolean }>`
   position: fixed;
-  top: 200%;
+  top: 100%;
   // transform: translateY(-50%);
   left: ${({ show }) => (show ? '38px' : '-800px')};
   opacity: ${({ show }) => (show ? 1 : 0)};
@@ -33,6 +33,7 @@ const SlideInContainer = styled.div<{ show: boolean }>`
   transition: left 0.5s ease, opacity 0.5s ease;
   z-index: 1001;
   border-radius: 32px;
+  height: 85vh;
 
   @media (max-width: 768px) {
     left: ${({ show }) => (show ? '0' : '-100%')};
@@ -124,7 +125,7 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #EE232A; /* optional: add a subtle brand border on focus */
+    border-color: #EE232A;
   }
 `;
 
@@ -152,25 +153,30 @@ line-height: 24px;
   }
 `;
 
-const SubmitButton = styled.button`
-border-radius: 8px;
-background: var(--Brand-red-red-500, #EE232A);
- padding: 18px 16px;
-  border: none;
+const SubmitButton = styled.button<{ isSubmitted?: boolean }>`
   border-radius: 10px;
-  cursor: pointer;
-  width: 157px;
-  color:  #FFF;
-font-size: 18px;
-font-weight: 600;
-letter-spacing: 0.72px;
-text-transform: uppercase;
-margin-top: 28px;
+  background: ${({ isSubmitted }) => (isSubmitted ? '#AFF9D1' : '#EE232A')};
+  padding: 18px 16px;
+  border: none;
+  cursor: ${({ isSubmitted }) => (isSubmitted ? 'no-drop' : 'pointer')};
+  color: ${({ isSubmitted }) => (isSubmitted ? '#181010' : '#fff')};
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
+  margin-top: 28px;
+  transition: background 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background: ${({ isSubmitted }) => (isSubmitted ? '#AFF9D1' : '#c71b21')};
+    transform: ${({ isSubmitted }) => (isSubmitted ? 'none' : 'scale(1.03)')};
+  }
 
   @media (max-width: 480px) {
-width: 100%;
+    width: 100%;
   }
 `;
+
 
 
 const GridForTwo = styled.div`
@@ -271,15 +277,8 @@ export default function ContactForm({ show, onClose }: { show: boolean; onClose:
           </div>
         </div>
 
-        {isSubmitted ? (
-          <div style={{ marginTop: '2rem' }}>
-            <h3 style={{ fontSize: '24px', fontWeight: '400', color: '#181010' }}>Thank you!</h3>
-            <p style={{ fontSize: '18px', color: '#352727', marginTop: '8px' }}>
-              Your message has been received. We’ll be in touch soon.
-            </p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='d-flex flex-column justify-between' style={{ height: '93%' }}>
+          <div>
             <SectionTitle>What can we do for you?</SectionTitle>
             <Tags>
               {tags.map((tag) => (
@@ -318,13 +317,28 @@ export default function ContactForm({ show, onClose }: { show: boolean; onClose:
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
-            <div className='d-flex justify-end'>
-              <SubmitButton type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Sending...' : 'SUBMIT'}
-              </SubmitButton>
-            </div>
-          </form>
-        )}
+          </div>
+          <div className='d-flex justify-end'>
+            <SubmitButton type="submit" disabled={isSubmitting || isSubmitted} isSubmitted={isSubmitted}>
+              {isSubmitting
+                ? 'Sending...'
+                : isSubmitted
+                  ? 'Submitted Thank you!'
+                  : 'SUBMIT'}
+            </SubmitButton>
+          </div>
+        </form>
+
+        {/* {isSubmitted ? (
+          <div style={{ marginTop: '2rem' }}>
+            <h3 style={{ fontSize: '24px', fontWeight: '400', color: '#181010' }}>Thank you!</h3>
+            <p style={{ fontSize: '18px', color: '#352727', marginTop: '8px' }}>
+              Your message has been received. We’ll be in touch soon.
+            </p>
+          </div>
+        ) : (
+        
+        )} */}
 
       </SlideInContainer>
     </>

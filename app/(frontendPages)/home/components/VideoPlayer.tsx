@@ -121,7 +121,7 @@ const VideoPlayer: React.FC = () => {
       >
         <video
           ref={videoRef}
-          src="https://screenrepo-production-bucket.s3.ap-south-1.amazonaws.com/videos/fristfoldvid.mp4"
+          src="https://screenrepo-production-bucket.s3.ap-south-1.amazonaws.com/videos/Volt+Money+Music+V2+(1)_1.mp4"
           width={"100%"}
           height={"100%"}
           autoPlay
@@ -135,11 +135,12 @@ const VideoPlayer: React.FC = () => {
 
       {isHovered && window.innerWidth > 768 && (
         <CustomCursor id="custom-cursor">
-          {isPlaying ? (
+          <CursorText>Coming soon</CursorText>
+          {/* {isPlaying ? (
             <CursorText>Pause</CursorText>
           ) : (
             <CursorText>Play</CursorText>
-          )}
+          )} */}
         </CustomCursor>
       )}
     </DashedContainer>
@@ -175,16 +176,20 @@ const CustomCursor = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 80px;
-  height: 80px;
-  background-color: var(--white-color);
+  padding:8px 16px;
+  border-radius: 24px;
+  // width: 80px;
+  // height: 80px;
+  // background-color: var(--white-color);
+  background-color: #EE232A;
   z-index: 9;
-  border-radius: 100%;
+  // border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const CursorText = styled.span`
-  font-size: 20px;
+  font-size: 16px;
+  color: #fff;
 `;
