@@ -84,11 +84,12 @@ const Firstfold = () => {
             margin="0"
             borderRadius="8px"
             btnContent="Book a call"
+            onClick={() => window.open("https://calendly.com/shabbir-hexcode/30min", "_blank")}
           />
 
-          <TertiaryBtn padding="16px" fontSize="18px" className="w-full m-none">
+          {/* <TertiaryBtn padding="16px" fontSize="18px" className="w-full m-none">
             Our projects
-          </TertiaryBtn>
+          </TertiaryBtn> */}
         </div>
       </FirstFoldWrapper>
     </DashedContainer>

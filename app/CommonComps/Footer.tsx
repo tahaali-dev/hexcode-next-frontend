@@ -30,18 +30,18 @@ const Footer = () => {
             </ParaLight>
           </div>
 
-          <div className="d-flex flex-column g-md">
+          {/* <div className="d-flex flex-column g-md">
             <LightHeading className="text-Uppercase">Explore</LightHeading>
             <AnchorLink>Projects</AnchorLink>
             <AnchorLink>About</AnchorLink>
             <AnchorLink>Services</AnchorLink>
-          </div>
+          </div> */}
 
           <div className="d-flex flex-column g-md">
-            <LightHeading className="text-Uppercase">say hello!</LightHeading>
-            <AnchorLink>instagram</AnchorLink>
-            <AnchorLink>Twitter (X)</AnchorLink>
-            <AnchorLink>Dribble</AnchorLink>
+            <LightHeading className="text-Uppercase" >say hello!</LightHeading>
+            <AnchorLink href="https://www.instagram.com/teamhexcode/" target="_blank">instagram</AnchorLink>
+            <AnchorLink href="https://x.com/teamhexcode" target="_blank">Twitter (X)</AnchorLink>
+            <AnchorLink href="https://www.linkedin.com/company/hexcodedesign/posts/?feedView=all" target="_blank">Linkedin</AnchorLink>
           </div>
 
           <div className="d-flex flex-column g-md">
@@ -85,9 +85,9 @@ const Footer = () => {
             <LightHeading className="text-Uppercase">Say hello</LightHeading>
 
             <div className="d-flex flex-column g-md align-end">
-              <AnchorLink>Linkedin</AnchorLink>
-              <AnchorLink>Instagram</AnchorLink>
-              <AnchorLink>Twitter (X)</AnchorLink>
+              <AnchorLink href="https://www.linkedin.com/company/hexcodedesign/posts/?feedView=all" target="_blank">Linkedin</AnchorLink>
+              <AnchorLink href="https://www.instagram.com/teamhexcode/" target="_blank">Instagram</AnchorLink>
+              <AnchorLink href="https://x.com/teamhexcode" target="_blank">Twitter (X)</AnchorLink>
             </div>
           </div>
 
@@ -189,6 +189,7 @@ const AnchorLink = styled.a`
   line-height: 24px;
   text-transform: uppercase;
   cursor: pointer;
+  text-decoration: none;
 
   @media (max-width: 768px) {
     font-size: 24px;

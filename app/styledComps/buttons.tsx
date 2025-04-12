@@ -8,12 +8,14 @@ export const PrimaryBtn = ({
   margin,
   borderRadius,
   btnContent,
+  onClick,
 }: {
   padding: string;
   fontSize: string;
   margin: string;
   borderRadius: string;
   btnContent: string;
+  onClick?: () => void;
 }) => {
   const numberOfRows: any = 5;
   const shades = ["#4A0507", "#881418", "#A50F14", "#C80D13", "#EE232A"];
@@ -60,7 +62,7 @@ export const PrimaryBtn = ({
   }, []);
 
   return (
-    <ButtonWrapper padding={padding} fontSize={fontSize} className="w-full">
+    <ButtonWrapper padding={padding} fontSize={fontSize} className="w-full" onClick={onClick}>
       <span>{btnContent}</span>
       <GradientContainer
         ref={shadeContainerRef}

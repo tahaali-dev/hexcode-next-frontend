@@ -55,41 +55,46 @@ const Projects = () => {
           >
             <Masonry columnsCount={2} className="gap-64">
               <ProjectCard
-                projectName="Taper App"
+                projectName="Qurfy"
                 projectDetails="Redesigning new app for discovering barber and beauty professionals."
                 banner={PR1}
               />
               <ProjectCard
-                projectName="Taper App"
+                projectName="User Experior"
                 projectDetails="Redesigning new app for discovering barber and beauty professionals."
                 banner={PR4}
               />
 
               <ProjectCard
-                projectName="Taper App"
+                projectName="Sensyrtech"
                 projectDetails="Redesigning new app for discovering barber and beauty professionals."
                 banner={PR3}
               />
               <ProjectCard
-                projectName="Taper App"
+                projectName="Volt"
                 projectDetails="Redesigning new app for discovering barber and beauty professionals."
                 banner={PR5}
               />
               <ProjectCard
-                projectName="Taper App"
+                projectName="Delve"
                 projectDetails="Redesigning new app for discovering barber and beauty professionals."
                 banner={PR2}
               />
 
               <ProjectCard
-                projectName="Taper App"
+                projectName="Install IoT"
+                projectDetails="Redesigning new app for discovering barber and beauty professionals."
+                banner={PR6}
+              />
+                <ProjectCard
+                projectName="StarBrite"
                 projectDetails="Redesigning new app for discovering barber and beauty professionals."
                 banner={PR6}
               />
             </Masonry>
           </ResponsiveMasonry>
 
-          <PrimaryBtn
+          {/* <PrimaryBtn
             padding="16px"
             fontSize="18px"
             margin="0"
@@ -101,7 +106,7 @@ const Projects = () => {
             As you know, most of my work we can’t disclose publicly,
             <br />
             you know what I mean (under NDA)
-          </LightText>
+          </LightText> */}
         </ProjectsWrapper>
       </div>
     </DashedContainer>
@@ -113,7 +118,7 @@ export default Projects;
 // styles --
 const ProjectsWrapper = styled.div`
   border-radius: 16px;
-  padding: 80px 22px;
+  padding: 80px 22px 0px 22px;
   text-align: center;
 
   .projects-holder {

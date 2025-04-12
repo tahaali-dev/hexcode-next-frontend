@@ -62,12 +62,12 @@ const Header = () => {
           <div className="p-md d-flex align-center justify-between ">
             <div className="d-flex g-xl">
               <Image src={Logo} height={20} alt="hexcode-logo" />
-              <div className="d-flex g-xl m-none">
+              {/* <div className="d-flex g-xl m-none">
                 <NavLink icon={ProjectIcon} title={"Projects"} />
                 <NavLink icon={AboutIcon} title={"About"} />
                 <NavLink icon={ServicesIcon} title={"Services"} />
                 <NavLink icon={ContactIcon} title={"Contact us"} />
-              </div>
+              </div> */}
             </div>
 
             <div className="hamburger-holder d-none">
@@ -80,14 +80,14 @@ const Header = () => {
             </div>
 
             <div className="d-flex g-md m-none">
-              <SecondaryBtn>
+              {/* <SecondaryBtn>
                 <StyledImage
                   src={FigmaIcon}
                   alt="figma-icon"
                   width="20"
                   height="20"
                 />
-              </SecondaryBtn>
+              </SecondaryBtn> */}
               <PrimaryBtn
                 padding="12px 16px"
                 fontSize="16px"
