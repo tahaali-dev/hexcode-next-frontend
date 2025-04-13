@@ -132,7 +132,7 @@ const Footer = () => {
         borderTopNone="none"
       >
         <CopyWriteWrapper className="d-flex align-center justify-between px-lg py-sm">
-          <LightCopyText>© 2024 Hexcode. All Rights Reserved.</LightCopyText>
+          <LightCopyText>© 2025 Hexcode. All Rights Reserved.</LightCopyText>
 
           <div className="d-flex align-center g-lg ">
             <LightCopyText>Terms</LightCopyText>
