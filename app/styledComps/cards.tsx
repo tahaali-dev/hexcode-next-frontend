@@ -86,8 +86,8 @@ const WWDWrapper = styled.div<{ bgcolor: string }>`
     flex-direction: column;
     gap: 128px;
     justify-content: space-between;
-    border-radius: 16px 0px 0px 16px;
-    background-color: ${(prop) => (prop.bgcolor ? prop.bgcolor : "#fff")};
+    border-radius: 16px 0 0 16px;
+    background-color: ${({ bgcolor }) => bgcolor || "#fff"};
 
     .card-heading {
       color: var(--clr-dark);
@@ -100,12 +100,14 @@ const WWDWrapper = styled.div<{ bgcolor: string }>`
     .content-box {
       display: flex;
       gap: 80px;
+
       .text-1 {
         color: var(--clr-dark2);
         font-size: 18px;
         font-weight: 300;
         line-height: 24px;
       }
+
       .text-2 {
         color: var(--clr-dark);
         font-size: 18px;
@@ -118,10 +120,9 @@ const WWDWrapper = styled.div<{ bgcolor: string }>`
   .right {
     position: relative;
     min-width: 515px;
-    // background-color: yellow;
 
     .half-color {
-      background-color: ${(prop) => (prop.bgcolor ? prop.bgcolor : "#fff")};
+      background-color: ${({ bgcolor }) => bgcolor || "#fff"};
       width: 50%;
       margin-left: -2px;
     }
@@ -132,12 +133,26 @@ const WWDWrapper = styled.div<{ bgcolor: string }>`
     }
   }
 
+    @media (max-width: 1650px) {
+    .left .card-heading {
+      font-size: 32px;
+      line-height: 42px;
+    }
+.left .content-box {
+gap: 0px;
+}
+
+  }
+
+
   @media (max-width: 768px) {
+    flex-direction: column;
+
     .left {
-      padding: 16px;
       width: 100%;
-      border-radius: 16px;
+      padding: 16px;
       gap: 16px;
+      border-radius: 16px;
 
       .card-heading {
         font-size: 32px;
@@ -145,22 +160,23 @@ const WWDWrapper = styled.div<{ bgcolor: string }>`
       }
 
       .content-box {
-        display: flex;
         flex-direction: column;
         gap: 24px;
-        .text-1 {
-          font-size: 16px;
-          line-height: 24px;
-        }
+
+        .text-1,
         .text-2 {
           font-size: 16px;
-          font-weight: 400;
           line-height: 24px;
         }
       }
     }
+
+    .right {
+      min-width: 100%;
+    }
   }
 `;
+
 
 // Consulting card ----------------------------------
 export const ConsultingCard = ({
@@ -277,6 +293,13 @@ const ConsultingCardWrapper = styled.div<{ bgcolor: string }>`
       object-fit: contain;
     }
   }
+
+    @media (min-width: 1650px) {
+      .card-heading {
+        font-size: 32px;
+        line-height: 42px;
+      }
+    }
 
   @media (max-width: 768px) {
     .left {

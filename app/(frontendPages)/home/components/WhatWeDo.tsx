@@ -14,7 +14,7 @@ import VIIcon from "../../../public/homepage/visualIdentity.svg";
 import WPIcon from "../../../public/homepage/websiteandproduct.svg";
 import CDIcon from "../../../public/homepage/creativedev.svg";
 import ConIcon from "../../../public/homepage/consulting.svg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { DashedContainer } from "@/app/styledComps/containers";
 import {
   HexSectionName,
@@ -26,13 +26,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LottieAnimation from "@/app/utils/LottieAnimation";
 import ArrowLottie from "../../../public/basics/arrow.json";
+import ScrollCard from "@/app/styledComps/ScrollCard";
 // Imports ----------
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 // imports  ------------------------------------------------------------------------------------------------
-const para1Vis = `Crafting memorable impressions and emotional \n connections with your audience that embarks your \n digital presence. `;
+const para1Vis = `Crafting memorable impressions and emotional \n connections with your audience that embarks your digital presence. `;
 const para2Vis = `Logo Design\nBrand Color Palette & Typography Selection\nVisual Style GuidelinesBrand Collateral\nSocial Media Branding\nPackaging Design\nBrand Style Guide`;
 
 const para1Web = `Creating intuitive and \n aesthetically  pleasing websites \n & products around  user-centric solutions that elevate\n your brand and engage your audience.`;
@@ -90,16 +91,15 @@ const WhatWeDo = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const cards = gsap.utils.toArray(".whatwedo-card") as HTMLElement[];
+      const cards = gsap.utils.toArray(".scroll-card") as HTMLElement[];
       const spacer = window.innerWidth <= 768 ? 64 : 118;
 
       if (cards.length > 0 && window.innerWidth > 768) {
         cards.forEach((card, index) => {
           ScrollTrigger.create({
             trigger: card,
-            start: `top-=${index * spacer} ${
-              window.innerWidth > 768 ? "top+=15%" : "top+=8%"
-            }`,
+            start: `top-=${index * spacer} ${window.innerWidth > 768 ? "top+=15%" : "top+=8%"
+              }`,
 
             endTrigger: ".cards-holder",
             end: `bottom top+=99%`,
@@ -174,32 +174,19 @@ const WhatWeDo = () => {
           />
         </LottieBox>
 
+
         <div className="cards-holder">
           {cardsData.map((card, index) =>
-            card.title === "Consulting" ? (
-              <div className="whatwedo-card mh-402" key={index}>
-                <ConsultingCard
-                  title={card.title}
-                  bgcolor={card.bgcolor}
-                  para1={card.para1}
-                  image={card.image}
-                  icon={card.icon}
-                  mobileImage={card.mobileImage}
-                />
-              </div>
-            ) : (
-              <div className="whatwedo-card " key={index}>
-                <WhatWeDoCard
-                  title={card.title}
-                  bgcolor={card.bgcolor}
-                  para1={card.para1}
-                  para2={card.para2}
-                  image={card.image}
-                  icon={card.icon}
-                  mobileImage={card.mobileImage}
-                />
-              </div>
-            )
+            <ScrollCard
+              title={card.title}
+              bgcolor={card.bgcolor}
+              para1={card.para1}
+              para2={card.para2}
+              image={card.image}
+              icon={card.icon}
+              mobileImage={card.mobileImage}
+              type={card.title === "Consulting" ? "consulting" : "default"}
+            />
           )}
         </div>
       </WhatwedoWrapper>

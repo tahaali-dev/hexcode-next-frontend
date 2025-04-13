@@ -59,6 +59,8 @@ const Homepage = () => {
       <Footer />
       <div className="custom-cursor"></div>
 
+
+      {/* contact form */}
       <ContactForm show={formVisible} onClose={() => setFormVisible(false)} />
     </div>
   );
