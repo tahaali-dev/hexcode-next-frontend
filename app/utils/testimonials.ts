@@ -1,143 +1,90 @@
-import ClientImg from "../public/homepage/clientimg.png"; // Adjust import paths as needed
-import Logo from "../public/companies/Volt.svg";
+import ClientImg1 from "../public/homepage/client1.svg"; 
+import ClientImg2 from "../public/homepage/client2.svg"; 
+import ClientImg3 from "../public/homepage/client3.svg"; 
+
+
+
+import Logo1 from "../public/homepage/tesLogo1.svg";
+import Logo2 from "../public/homepage/tesLogo2.svg";
+import Logo3 from "../public/homepage/tesLogo3.svg";
+
+
+
 
 const clientData: any = [
   {
-    name: "Lalit Bihani",
-    description: "Co-founder of Volt",
-    clientImage: ClientImg,
-    clientCompanyLogo: Logo,
+    name: "Taher Lokhandwala",
+    description: "Hexcode is an exceptional...",
+    position: "Head of growth, Delve",
+    clientImage: ClientImg1,
+    clientCompanyLogo: Logo1,
     messages: [
       {
         id: 1,
         message:
-          "Volt has been a game-changer for my team. Their innovative solutions and commitment to excellence have made our team's work exceptional.",
+          "Hexcode is an exceptional design studio! Their modern, creative approach helped our product stand out in a crowded market.",
       },
       {
         id: 2,
         message:
-          "The tools provided by Volt have significantly streamlined our operations. Highly recommend their services!",
+          "The designs got glowing feedback from users. I’ve worked with the team on multiple ventures — their attention to detail and strong work ethic always impress.",
       },
       {
         id: 3,
         message:
-          "Exceptional customer service and groundbreaking technology. Volt is the way forward!",
+          "They’re truly committed to quality. That’s why I keep coming back. Highly recommend working with Hexcode!",
       },
     ],
   },
   {
-    name: "Ananya Sharma",
-    description: "CEO of Synergy Corp",
-    clientImage: ClientImg,
-    clientCompanyLogo: Logo,
+    name: "Joanna Shruti Sundharam",
+    description: "We’re extremely happy with...",
+    position:"Head of Product, Wisdom circle",
+    clientImage: ClientImg2,
+    clientCompanyLogo: Logo2,
     messages: [
       {
         id: 1,
         message:
-          "Synergy Corp has grown leaps and bounds thanks to Volt's expertise and dedication.",
+          "We’re extremely happy with the UI-UX work done by Hexcode. Shabbir and his team led a complete makeover of our product — and nailed it!",
       },
       {
         id: 2,
         message:
-          "The seamless integration of Volt's tools into our workflow has been fantastic.",
-      },
-    ],
-  },
-  {
-    name: "Rahul Mehta",
-    description: "CTO of Innovatech",
-    clientImage: ClientImg,
-    clientCompanyLogo: Logo,
-    messages: [
-      {
-        id: 1,
-        message:
-          "Volt's commitment to innovation is unparalleled. A pleasure to work with!",
-      },
-      {
-        id: 2,
-        message:
-          "Their team's attention to detail has elevated our product offerings.",
+          "The team is super responsive. They really take time to understand the requirements in detail and deliver exactly what’s needed.",
       },
       {
         id: 3,
         message:
-          "Highly professional and deeply knowledgeable in their field. Volt has exceeded expectations!",
+          "Fast, high-quality, and easy to work with — we highly recommend teaming up with them!",
       },
     ],
   },
   {
-    name: "Priya Kapoor",
-    description: "Managing Director at Apex Solutions",
-    clientImage: ClientImg,
-    clientCompanyLogo: Logo,
+    name: "Ajit Kumar Pradhan",
+    description: "Working with Hexcode to design...",
+    position:"Director of Product Management at Ayla Networks",
+    clientImage: ClientImg3,
+    clientCompanyLogo: Logo3,
     messages: [
       {
         id: 1,
         message:
-          "Apex Solutions has greatly benefited from Volt's innovative strategies.",
+          "Working with Hexcode to design our product from scratch was a fantastic experience. The designs were visually stunning and super usable!",
       },
       {
         id: 2,
         message:
-          "Their commitment to excellence is evident in every project we collaborate on.",
+          "They didn’t just execute — they brought in valuable product insights that really shaped the final outcome.",
+      },
+      {
+        id: 3,
+        message:
+          "Collaborating with the team was a joy. I’d recommend Hexcode to anyone looking for top-tier design expertise!",
       },
     ],
-  },
-  {
-    name: "Aditya Verma",
-    description: "Founder of GrowthHackers",
-    clientImage: ClientImg,
-    clientCompanyLogo: Logo,
-    messages: [
-      {
-        id: 1,
-        message:
-          "Volt's solutions have revolutionized our approach to scaling businesses.",
-      },
-      {
-        id: 2,
-        message:
-          "The insights provided by their team have driven remarkable growth for GrowthHackers.",
-      },
-    ],
-  },
-  {
-    name: "Aditya Verma",
-    description: "Founder of GrowthHackers",
-    clientImage: ClientImg,
-    clientCompanyLogo: Logo,
-    messages: [
-      {
-        id: 1,
-        message:
-          "Volt's solutions have revolutionized our approach to scaling businesses.",
-      },
-      {
-        id: 2,
-        message:
-          "The insights provided by their team have driven remarkable growth for GrowthHackers.",
-      },
-    ],
-  },
-  {
-    name: "Aditya Verma",
-    description: "Founder of GrowthHackers",
-    clientImage: ClientImg,
-    clientCompanyLogo: Logo,
-    messages: [
-      {
-        id: 1,
-        message:
-          "Volt's solutions have revolutionized our approach to scaling businesses.",
-      },
-      {
-        id: 2,
-        message:
-          "The insights provided by their team have driven remarkable growth for GrowthHackers.",
-      },
-    ],
-  },
+  }
+
 ];
 
 export default clientData;

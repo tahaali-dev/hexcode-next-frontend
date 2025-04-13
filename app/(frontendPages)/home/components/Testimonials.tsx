@@ -86,12 +86,12 @@ const Testimonials = () => {
                   {clientData[activeIndex].name}
                 </h5>
                 <span className="clr-dark3 text-md">
-                  {clientData[activeIndex].description}
+                  {clientData[activeIndex].position}
                 </span>
               </div>
             </div>
             <StyledImage
-              src={Logo}
+              src={clientData[activeIndex].clientCompanyLogo}
               alt={`project-banner`}
               width={60}
               height={24}
@@ -132,6 +132,7 @@ const TestimonialsContainer = styled.div`
   width: 100%;
   overflow: hidden;
   background-color: var(--white-color);
+  min-height: 450px;
 
   .clients {
     width: 35%;
