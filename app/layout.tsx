@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { useEffect } from "react";
 import styled from "@emotion/styled";
 import gsap from "gsap";
-import ContactForm from "./CommonComps/ContactModal";
+import Head from "next/head";
 
 const metadata: Metadata = {
   title: "Hexcode",
@@ -61,6 +61,11 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href="./public/favicon.ico" />
+        <link rel="apple-touch-icon" href="./public/favicon.ico" />
+      </Head>
+
       <body id="main-body">
         <div>
           <Header />

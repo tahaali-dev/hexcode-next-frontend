@@ -6,7 +6,7 @@ import CompaniesMarquee from "./(frontendPages)/home/components/CompaniesMarquee
 import FAQ from "./(frontendPages)/home/components/FAQ";
 import Firstfold from "./(frontendPages)/home/components/firstFold";
 import Projects from "./(frontendPages)/home/components/Projects";
-import SliderOfLove from "./(frontendPages)/home/components/SliderOfLove";
+// import SliderOfLove from "./(frontendPages)/home/components/SliderOfLove";
 import VideoPlayer from "./(frontendPages)/home/components/VideoPlayer";
 import WhatWeDo from "./(frontendPages)/home/components/WhatWeDo";
 import Footer from "./CommonComps/Footer";
