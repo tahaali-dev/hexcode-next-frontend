@@ -10,7 +10,7 @@ import WebAndProductMobile from "../../../public/homepage/wpMobile.png";
 import CreativeDevMobile from "../../../public/homepage/cdMobile.png";
 import ConsultingMobile from "../../../public/homepage/cnMobile.png";
 
-import VIIcon from "../../../public/homepage/visualIdentity.svg";
+import VIIcon from "../../../public/homepage/visualIdentityIcon.svg";
 import WPIcon from "../../../public/homepage/websiteandproduct.svg";
 import CDIcon from "../../../public/homepage/creativedev.svg";
 import ConIcon from "../../../public/homepage/consulting.svg";
