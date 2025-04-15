@@ -58,28 +58,39 @@ const Projects = () => {
                 projectName="Volt"
                 projectDetails="Building the most trusted platform for instant loans against mutual funds and stocks."
                 banner={PR1}
+                url="https://voltmoney.in/"
               />
               <ProjectCard
                 projectName="ABC Studios"
                 projectDetails="Designing a studio website showcasing talent and stories through artist management and premium productions."
                 banner={PR2}
+                url="https://abcstudios.world/"
               />
 
               <ProjectCard
                 projectName="Delve"
                 projectDetails="Creating a modern website for a Y Combinator–backed AI tool simplifying compliance for fast-growing teams."
                 banner={PR3}
+                url="https://delve.co/"
               />
 
               <ProjectCard
                 projectName="Install IoT"
                 projectDetails="Designing a website that connects businesses with expert IoT professionals for installation, support, and scalable growth."
                 banner={PR4}
+                url="https://www.install-iot.com/"
               />
               <ProjectCard
                 projectName="Starbrite Dental"
                 projectDetails="Branding a leading dental clinic with over 19 years of trusted, high-quality care."
                 banner={PR5}
+              />
+
+              <ProjectCard
+                projectName="Sensyrtech"
+                projectDetails="Designing customizable IoT solutions for real-time monitoring and insights."
+                banner={PR6}
+                url="https://www.sensyrtech.com/"
               />
             </Masonry>
           </ResponsiveMasonry>

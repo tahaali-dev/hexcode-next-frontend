@@ -20,6 +20,8 @@ import fifteen from "../../../public/companies/starbrite.svg";
 import sixteen from "../../../public/companies/delve.svg";
 import seventeen from "../../../public/companies/biotale.svg";
 import eighteen from "../../../public/companies/robylon-logo.svg";
+import nineteen from "../../../public/companies/sensyrtech.svg";
+
 
 import styled from "@emotion/styled";
 import { DashedContainer, StyledImage } from "@/app/styledComps/containers";
@@ -67,6 +69,7 @@ const CompaniesMarquee = () => {
               sixteen,
               seventeen,
               eighteen,
+              nineteen
             ].map((imageSrc, index) => (
               <div className="logo-holder" key={index}>
                 <StyledImage

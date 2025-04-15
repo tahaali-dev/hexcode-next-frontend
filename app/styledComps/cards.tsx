@@ -340,13 +340,15 @@ const ProjectCard = ({
   projectName,
   projectDetails,
   banner,
+  url
 }: {
   projectName: string;
   projectDetails: string;
   banner: string;
+  url?: string;
 }) => {
   return (
-    <ProjectCardWrapper>
+    <ProjectCardWrapper href={url} target="_blank">
       <StyledImage
         src={banner}
         alt={`project-banner`}
@@ -363,10 +365,20 @@ const ProjectCard = ({
 export default ProjectCard;
 
 // Styles ---
-const ProjectCardWrapper = styled.div`
+const ProjectCardWrapper = styled.a`
   display: flex;
   flex-direction: column;
   margin-bottom: 64px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  padding:12px;
+  border-radius: 16px;
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
 
   .project-banner {
     border-radius: 16px;
@@ -401,6 +413,7 @@ const ProjectCardWrapper = styled.div`
     }
   }
 `;
+
 
 //  slider card
 export const SliderLoveCard = ({

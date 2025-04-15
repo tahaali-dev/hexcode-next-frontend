@@ -15,7 +15,7 @@ const clientData: any = [
   {
     name: "Taher Lokhandwala",
     description: "Hexcode is an exceptional...",
-    position: "Head of growth, Delve",
+    position: "CEO, Sensyrtech",
     clientImage: ClientImg1,
     clientCompanyLogo: Logo1,
     messages: [

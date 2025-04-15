@@ -44,9 +44,9 @@ const Homepage = () => {
       <Firstfold />
       <CompaniesMarquee />
       <VideoPlayer />
-      <WhatWeDo />
       <EmptyContainer height="76px" />
       <Projects />
+      <WhatWeDo />
       <EmptyContainer height="76px" />
       {/* <SliderOfLove /> */}
       <Testimonials />
