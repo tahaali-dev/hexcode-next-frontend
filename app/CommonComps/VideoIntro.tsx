@@ -32,10 +32,11 @@ const VideoIntro = ({ onEnd }: VideoIntroProps) => {
   }
 
   function handleEnd() {
-   // Fade out before triggering onEnd
+   // Slide the entire wrapper up
    gsap.to(wrapperRef.current, {
-    opacity: 0,
-    duration: 1,
+    y: '-100%',
+    duration: 1.2,
+    ease: 'power3.inOut',
     onComplete: onEnd,
    });
   }
@@ -58,8 +59,8 @@ const VideoIntro = ({ onEnd }: VideoIntroProps) => {
     height: '100%',
     background: '#000',
     zIndex: 9999,
-    opacity: 1,
-    transition: 'opacity 0.3s ease-out',
+    transform: 'translateY(0)',
+    willChange: 'transform',
    }}
   >
    <video
