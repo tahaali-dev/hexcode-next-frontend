@@ -21,12 +21,11 @@ const Footer = () => {
         <FooterContainerDesktop className="m-none">
           <div>
             <AnchorLink>
-              Whenever, wherever. <br /> We're meant to work together.
+              Possibilities Beyond Limits
             </AnchorLink>
 
             <ParaLight className="mt-md">
-              Get in touch with us for full-time job <br /> opportunities,
-              freelance projects, design <br /> advice, or simply to say hello.
+              Let’s make something awesome together
             </ParaLight>
           </div>
 
