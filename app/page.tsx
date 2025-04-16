@@ -15,6 +15,7 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import Testimonials from "./(frontendPages)/home/components/Testimonials";
 import ContactForm from "./CommonComps/ContactModal";
+import ClientWrapper from "./CommonComps/ClientWrapper";
 // Imports ------
 
 const Homepage = () => {
@@ -40,29 +41,34 @@ const Homepage = () => {
   // onClick={() => setFormVisible(true)}
 
   return (
-    <div id="body-scroll">
-      <Firstfold />
-      <CompaniesMarquee />
-      <VideoPlayer />
-      <EmptyContainer height="76px" />
-      <Projects />
-      <WhatWeDo />
-      <EmptyContainer height="76px" />
-      {/* <SliderOfLove /> */}
-      <Testimonials />
-      <EmptyContainer height="76px" />
-      <AboutUs />
-      <EmptyContainer height="76px" />
-      <Benefits />
-      <EmptyContainer height="76px" />
-      <FAQ />
-      <Footer />
-      <div className="custom-cursor"></div>
+
+    <ClientWrapper>
+      <div id="body-scroll">
+        <Firstfold />
+        <CompaniesMarquee />
+        <VideoPlayer />
+        <EmptyContainer height="76px" />
+        <Projects />
+        <WhatWeDo />
+        <EmptyContainer height="76px" />
+        {/* <SliderOfLove /> */}
+        <Testimonials />
+        <EmptyContainer height="76px" />
+        <AboutUs />
+        <EmptyContainer height="76px" />
+        <Benefits />
+        <EmptyContainer height="76px" />
+        <FAQ />
+        <Footer />
+        <div className="custom-cursor"></div>
 
 
-      {/* contact form */}
-      <ContactForm show={formVisible} onClose={() => setFormVisible(false)} />
-    </div>
+        {/* contact form */}
+        <ContactForm show={formVisible} onClose={() => setFormVisible(false)} />
+      </div>
+    </ClientWrapper>
+
+
   );
 };
 
