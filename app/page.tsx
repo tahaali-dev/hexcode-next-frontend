@@ -15,7 +15,6 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import Testimonials from "./(frontendPages)/home/components/Testimonials";
 import ContactForm from "./CommonComps/ContactModal";
-import ClientWrapper from "./CommonComps/ClientWrapper";
 // Imports ------
 
 const Homepage = () => {
@@ -42,7 +41,7 @@ const Homepage = () => {
 
   return (
 
-    <ClientWrapper>
+    <>
       <div id="body-scroll">
         <Firstfold />
         <CompaniesMarquee />
@@ -66,7 +65,7 @@ const Homepage = () => {
         {/* contact form */}
         <ContactForm show={formVisible} onClose={() => setFormVisible(false)} />
       </div>
-    </ClientWrapper>
+    </>
 
 
   );
